@@ -3,7 +3,7 @@
 
 - hosts: 127.0.0.1
   vars:
-  	vagrant_rpm: vagrant_1.7.0_x86_64.rpm
+    vagrant_rpm: vagrant_1.7.0_x86_64.rpm
     st3_dir: /opt/sublime_text_3
     st3_tar: sublime_text_3_build_3065_x64.tar.bz2
   tasks:    
