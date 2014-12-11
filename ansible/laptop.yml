@@ -66,11 +66,11 @@
       sudo: true
       service: name=docker enabled=true state=started
 
-    - name: schedule monthly fstrim on /
+    - name: schedule weekly fstrim
       sudo: true
       file: >
         src=fstrim.sh
-        dest=/etc/cron.monthly
+        dest=/etc/cron.weekly
         owner=root
         group=root
         mode=0755
