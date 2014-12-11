@@ -3,7 +3,9 @@
 
 - hosts: 127.0.0.1
   vars:
-    st_dir: /opt/sublime_text
+  	vagrant_rpm: vagrant_1.7.0_x86_64.rpm
+    st3_dir: /opt/sublime_text_3
+    st3_tar: sublime_text_3_build_3065_x64.tar.bz2
   tasks:    
     - name: get 1920x1080 modeline
       command: cvt -r 1920 1080 60
@@ -14,20 +16,21 @@
       sudo: true
       template: >
         src=xorg.conf.j2
-        dest=/etc/X11/xorg.conf.new
+        dest=/etc/X11/xorg.conf
         owner=root
         group=root
         mode=0644
       notify: restart X
 
     - name: add Google GPG key
+      sudo: true
       rpm_key: >
         key=https://dl-ssl.google.com/linux/linux_signing_key.pub
         state=present
 
     - name: add Google Chrome repo
       sudo: true
-      file: >
+      copy: >
         src=google-chrome.repo
         dest=/etc/yum.repos.d/google-chrome.repo
         owner=root
@@ -36,7 +39,7 @@
 
     - name: add Google Talk plugin repo
       sudo: true
-      file: >
+      copy: >
         src=google-talkplugin.repo
         dest=/etc/yum.repos.d/google-talkplugin.repo
         owner=root
@@ -45,7 +48,7 @@
 
     - name: install packages
       sudo: true
-      yum: pkg={{ item }} state=present update_cache=true
+      yum: pkg={{ item }} state=present
       with_items:
         - docker-io
         - gnome-tweak-tool
@@ -68,60 +71,65 @@
 
     - name: schedule weekly fstrim
       sudo: true
-      file: >
+      copy: >
         src=fstrim.sh
         dest=/etc/cron.weekly
         owner=root
         group=root
         mode=0755
 
+    - name: download Vagrant
+      get_url: >
+        url=https://dl.bintray.com/mitchellh/vagrant/{{ vagrant_rpm }}
+        dest=/tmp/{{ vagrant_rpm }}
+
     - name: install Vagrant
       sudo: true
       yum: >
-        pkg=https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.0_x86_64.rpm
+        pkg=/tmp/{{ vagrant_rpm }}
         state=present
 
     - name: download Sublime Text
       get_url: >
-        url=http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3065_x64.tar.bz2
-        dest=/tmp/st3.tar.bz2
+        url=http://c758482.r82.cf2.rackcdn.com/{{ st3_tar }}
+        dest=/tmp/{{ st3_tar }}
 
     - name: install Sublime Text
       sudo: true
       unarchive: >
-        src=/tmp/st3.tar.bz2
+        src=/tmp/{{ st3_tar }}
         dest=/opt
         copy=no
 
     - name: create Sublime Text shell link
       sudo: true
       file: >
-        src={{ st_dir }}/sublime_text
+        src={{ st3_dir }}/sublime_text
         dest=/usr/local/bin/subl
         owner=root
         group=root
         state=link
 
-    - name: create Sublime Text desktop item
+    - name: copy Sublime Text desktop item
       sudo: true
       file: >
-        src={{ st_dir }}/sublime_text.desktop
+        src={{ st3_dir }}/sublime_text.desktop
         dest=/usr/share/applications/sublime_text.desktop
         owner=root
         group=root
-        state=link
 
     - name: fix Sublime Text icon
       sudo: true
       lineinfile: >
-        dest={{ st_dir }}/sublime_text.desktop
+        dest=/usr/share/applications/sublime_text.desktop
         regexp=^Icon=
-        line=Icon={{ st_dir }}/Icon/128x128/sublime-text.png
+        line=Icon={{ st3_dir }}/Icon/128x128/sublime-text.png
 
     - name: install Package Control
+      sudo: true
       get_url: >
         url=https://sublime.wbond.net/Package%20Control.sublime-package
-        dest={{ st_dir }}/Packages/Package\ Control.sublime-package
+        dest={{ st3_dir }}/Packages/Package\ Control.sublime-package
         owner=root
         group=root
         mode=0664
