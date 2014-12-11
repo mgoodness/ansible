@@ -1,0 +1,27 @@
+[branch]
+	autosetupmerge = true
+	autosetuprebase = always
+
+[color]
+	ui = true
+
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+
+[diff]
+	mnemonicprefix = true
+	renames = copies
+
+[merge]
+	stat = true
+
+[push]
+	default = simple
+
+[rerere]
+	enabled = true
+
+[user]
+	email = mgoodness@gmail.com
+	name = Michael Goodness
