@@ -1,0 +1,251 @@
+Host agartha
+	Hostname caldera-agartha.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host atlantis
+	Hostname caldera-atlantis.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host babylon
+	Hostname caldera-babylon.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host beta
+	Hostname beta.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host bitbucket
+	Hostname bitbucket.org
+	Port 22
+	User git
+	IdentityFile ~/.ssh/mgoodness@bitbucket
+
+Host core01
+	Hostname 192.168.1.141
+	Port 22
+	User core
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host db1
+	Hostname db1.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host db2
+	Hostname db2.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host db3
+	Hostname db3.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host dc1
+	Hostname dc1.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host dc2
+	Hostname dc2.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host dc3
+	Hostname dc3.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host desk
+	Hostname desktop-mgood.gbpinc.com
+	Port 22
+	User mgood
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host eldorado
+	Hostname caldera-eldorado.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host fserver
+	Hostname fserver.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host gbp-web
+	Hostname guess-central.gbpinc.com
+	Port 22
+	User ec2-user
+	IdentityFile ~/.ssh/gbp_web.pem
+
+Host gbp-web-gce
+	Hostname 130.211.158.210
+	Port 22
+	User mgood
+	IdentityFile ~/.ssh/google_compute_engine
+
+Host github
+	Hostname github.com
+	Port 22
+	User git
+	IdentityFile ~/.ssh/mgoodness@github
+
+Host itsupport
+	Hostname itsupport.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host monitor
+	Hostname monitor.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host mserver-old
+	Hostname 192.168.1.25
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host mserver1
+	Hostname mserver1.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host mserver2
+	Hostname mserver2.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host nasit1
+	Hostname prodserver.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+	
+Host nasit2
+	Hostname 192.168.6.9
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+	
+Host nasit3
+	Hostname nasit3.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host omega
+	Hostname omega-awesome.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host portroyal
+	Hostname caldera-portroyal.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host prep1
+	Hostname prep1.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host prep2
+	Hostname prep2.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host puppet
+	Hostname puppet.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host repo
+	Hostname repo.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host r8
+	Hostname r8.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host services
+	Hostname services.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host smtp
+	Hostname smtp.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host stash
+	Hostname repo.gbpinc.com
+	Port 7999
+	User git
+	IdentityFile ~/.ssh/mgood@gbp-stash
+
+Host tanis
+	Hostname caldera-tanis.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host tg1
+	Hostname caldera-tg1.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host tg2
+	Hostname caldera-tg2.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host tg3
+	Hostname caldera-tg3.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host tg4
+	Hostname caldera-tg4.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp
+
+Host xanadu
+	Hostname caldera-xanadu.gbpinc.com
+	Port 22
+	User root
+	IdentityFile ~/.ssh/mgood@gbp

@@ -2,54 +2,79 @@
 ---
 
 - hosts: 127.0.0.1
-  roles:
-    - google_chrome
-    - google_talk_plugin
-
   vars:
-    vagrant_rpm: vagrant_1.7.0_x86_64.rpm
+  	mysql_rpm: mysql-community-release-fc19-5.noarch.rpm
+    vagrant_rpm: vagrant_1.7.2_x86_64.rpm
     st3_dir: /opt/sublime_text_3
     st3_tar: sublime_text_3_build_3065_x64.tar.bz2
   tasks:    
-    - name: get 1920x1080 modeline
-      command: cvt -r 1920 1080 60
-      register: modeline
-      changed_when: false
-
-    - name: create xorg.conf with 1920x1080 modeline
+    - name: add Google GPG key
       sudo: true
-      template: >
-        src=xorg.conf.j2
-        dest=/etc/X11/xorg.conf
+      rpm_key: >
+        key=https://dl-ssl.google.com/linux/linux_signing_key.pub
+        state=present
+
+    - name: add Google Chrome repo
+      sudo: true
+      copy: >
+        src=google-chrome.repo
+        dest=/etc/yum.repos.d/google-chrome.repo
         owner=root
         group=root
         mode=0644
-      notify: restart X
 
-    - name: install packages
+    - name: add Google Talk plugin repo
+      sudo: true
+      copy: >
+        src=google-talkplugin.repo
+        dest=/etc/yum.repos.d/google-talkplugin.repo
+        owner=root
+        group=root
+        mode=0644
+
+    - name: add VirtualBox repo
+      sudo: true
+      get_url: >
+        url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+        dest=/etc/yum.repos.d/virtualbox.repo
+        owner=root
+        group=root
+        mode=0644
+
+    - name: download MySQL repo
+      get_url: >
+        url=http://dev.mysql.com/get/{{ mysql_rpm }}
+        dest=/tmp/ {{ mysql_rpm }}
+
+    - name: install MySQL repo
+      sudo: true
+      yum: >
+        pkg=/tmp/{{ mysql_rpm }}
+        state=present
+
+	- name: install packages
       sudo: true
       yum: pkg={{ item }} state=present
       with_items:
         - gnome-tweak-tool
+        - google-chrome-stable
         - google-droid-sans-fonts
         - google-droid-sans-mono-fonts
         - google-droid-serif-fonts
-        - tlp
+        - google-talkplugin
         - vim
+        - vim-X11
         - zsh
+        - kernel-devel
+        - gcc
+        - VirtualBox-4.3
 
-    - name: start TLP
+    - name: enable fstrim discards in LVM
       sudo: true
-      service: name=tlp enabled=true state=started
-
-    - name: schedule weekly fstrim
-      sudo: true
-      copy: >
-        src=fstrim.sh
-        dest=/etc/cron.weekly
-        owner=root
-        group=root
-        mode=0755
+      lineinfile: >
+        dest=/etc/lvm/lvm.conf
+        regexp=issue_discards\ =
+        line=issue_discards\ =\ 1
 
     - name: download Vagrant
       get_url: >
@@ -106,8 +131,3 @@
         owner=root
         group=root
         mode=0664
-
-  handlers:
-    - name: restart X
-      sudo: true
-      service: name=graphical.target state=restarted

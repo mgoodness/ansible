@@ -1,4 +1,7 @@
 {
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Ansible",
@@ -7,6 +10,7 @@
 		"GTKDarkThemeVariantSetter",
 		"Markdown Preview",
 		"MarkdownEditing",
+		"Package Control",
 		"SFTP",
 		"SublimeGit",
 		"Sublimerge Pro",

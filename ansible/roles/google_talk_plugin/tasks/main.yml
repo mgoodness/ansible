@@ -1,0 +1,15 @@
+# Ansible
+---
+
+- name: add Google Talk plugin repo
+  sudo: true
+  copy: >
+    src=google-talkplugin.repo
+    dest=/etc/yum.repos.d/google-talkplugin.repo
+    owner=root
+    group=root
+    mode=0644
+
+- name: install Google Talk plugin
+  sudo: true
+  yum: pkg=google-talkplugin state=present

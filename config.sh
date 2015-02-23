@@ -16,3 +16,8 @@ chsh -s /usr/bin/zsh
 # Sublime Text
 mkdir -p ~/.config/sublime-text-3/Packages
 ln -sf ~/configs/sublime-text-3 ~/.config/sublime-text-3/Packages/User
+
+# SSH
+rm -rf ~/.ssh
+ln -sf ~/configs/ssh ~/.ssh
+

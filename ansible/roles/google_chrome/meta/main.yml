@@ -1,0 +1,5 @@
+# Ansible
+---
+
+dependencies:
+  - { role: google_gpg_key }

@@ -1,0 +1,15 @@
+# Ansible
+---
+
+- name: add Google Chrome repo
+  sudo: true
+  copy: >
+    src=google-chrome.repo
+    dest=/etc/yum.repos.d/google-chrome.repo
+    owner=root
+    group=root
+    mode=0644
+
+- name: install Google Chrome
+  sudo: true
+  yum: pkg=google-chrome-stable state=present

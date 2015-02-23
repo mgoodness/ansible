@@ -1,0 +1,8 @@
+# Ansible
+---
+
+- name: add Google GPG key
+  sudo: true
+  rpm_key: >
+    key=https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state=present

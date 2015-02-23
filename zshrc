@@ -49,7 +49,8 @@ plugins=(colored-man docker git git-extras sublime sudo systemd vagrant web-sear
 
 # User configuration
 
-export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/mgoodness/.local/bin:/home/mgoodness/bin"
+export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/mgood/.local/bin:/home/mgood/bin"
+export JAVA_HOME="/usr/java/latest"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -78,3 +79,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/mgood/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables bash completion for gcloud.
+source '/home/mgood/google-cloud-sdk/completion.zsh.inc'
