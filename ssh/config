@@ -88,14 +88,14 @@ Host fserver
 	User root
 	IdentityFile ~/.ssh/mgood@gbp
 
-Host gbp-web
-	Hostname guess-central.gbpinc.com
+Host gbp-web-old
+	Hostname 54.235.155.104
 	Port 22
 	User ec2-user
 	IdentityFile ~/.ssh/gbp_web.pem
 
-Host gbp-web-gce
-	Hostname 130.211.158.210
+Host gbp-web
+	Hostname gc-new.gbpinc.com
 	Port 22
 	User mgood
 	IdentityFile ~/.ssh/google_compute_engine

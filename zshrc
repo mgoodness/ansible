@@ -45,11 +45,11 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man docker git git-extras sublime sudo systemd vagrant web-search yum)
+plugins=(colored-man docker git git-extras sublime sudo systemd vagrant yum)
 
 # User configuration
 
-export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/mgood/.local/bin:/home/mgood/bin"
+export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/mgood/.local/bin:/home/mgood/bin:/home/mgood/.npm/bin"
 export JAVA_HOME="/usr/java/latest"
 # export MANPATH="/usr/local/man:$MANPATH"
 
