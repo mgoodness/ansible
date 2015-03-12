@@ -1,5 +1,5 @@
-# Ansible
 ---
+# tasks file for google_chrome
 
 - name: add Google Chrome repo
   sudo: true
@@ -10,6 +10,6 @@
     group=root
     mode=0644
 
-- name: install Google Chrome
+- name: install Google Chrome (stable)
   sudo: true
   yum: pkg=google-chrome-stable state=present

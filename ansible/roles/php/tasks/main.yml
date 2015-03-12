@@ -1,0 +1,16 @@
+---
+# tasks file for php
+
+- name: install PHP packages
+  sudo: true
+  yum: pkg={{ item }} state=present
+  with_items:
+    - php-pear-PHP-CodeSniffer
+    - php-phpmd-PHP-PMD
+    - npm
+
+- name: configure npm global location
+  shell: npm config set prefix ~/.npm
+
+- name: install npm Less package
+  npm: name=less state=present global=true

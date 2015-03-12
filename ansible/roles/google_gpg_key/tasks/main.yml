@@ -1,7 +1,7 @@
-# Ansible
 ---
+# tasks file for google_gpg_key
 
-- name: add Google GPG key
+- name: import Google GPG key
   sudo: true
   rpm_key: >
     key=https://dl-ssl.google.com/linux/linux_signing_key.pub

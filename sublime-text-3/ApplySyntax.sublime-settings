@@ -10,11 +10,15 @@
 
     // Put your custom syntax rules here:
     "syntaxes": [
-		{
-			"name": "Ansible/Ansible",
+        {
+            "name": "Ansible/Ansible",
             "rules": [
-	      		{"first_line": "^# Ansible"}
-	    	]
-		}
+                {"file_name": ".*/tasks/.*.yml$"},
+                {"file_name": ".*/handler/.*.yml$"},
+                {"file_name": ".*/vars/.*.yml$"},
+                {"file_name": ".*/roles/.*.yml$"},
+                {"file_name": ".*/.*ansible.*/.*.yml$"}
+            ]
+        }
     ]
 }

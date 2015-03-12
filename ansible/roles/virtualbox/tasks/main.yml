@@ -1,0 +1,21 @@
+---
+# tasks file for virtualbox
+
+- name: add VirtualBox repo
+  sudo: true
+  get_url: >
+    url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+    dest=/etc/yum.repos.d/virtualbox.repo
+    owner=root
+    group=root
+    mode=0644
+
+- name: install VirtualBox 4.3
+  sudo: true
+  yum: pkg=VirtualBox-4.3 state=present
+
+
+- name: add current user to VirtualBox group
+  sudo: true
+  user: name={{ ansible_user_id }} groups=vboxusers append=true
+  

@@ -1,133 +1,29 @@
-# Ansible
 ---
+# file: desktop.yml
 
 - hosts: 127.0.0.1
-  vars:
-  	mysql_rpm: mysql-community-release-fc19-5.noarch.rpm
-    vagrant_rpm: vagrant_1.7.2_x86_64.rpm
-    st3_dir: /opt/sublime_text_3
-    st3_tar: sublime_text_3_build_3065_x64.tar.bz2
-  tasks:    
-    - name: add Google GPG key
-      sudo: true
-      rpm_key: >
-        key=https://dl-ssl.google.com/linux/linux_signing_key.pub
-        state=present
-
-    - name: add Google Chrome repo
-      sudo: true
-      copy: >
-        src=google-chrome.repo
-        dest=/etc/yum.repos.d/google-chrome.repo
-        owner=root
-        group=root
-        mode=0644
-
-    - name: add Google Talk plugin repo
-      sudo: true
-      copy: >
-        src=google-talkplugin.repo
-        dest=/etc/yum.repos.d/google-talkplugin.repo
-        owner=root
-        group=root
-        mode=0644
-
-    - name: add VirtualBox repo
-      sudo: true
-      get_url: >
-        url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
-        dest=/etc/yum.repos.d/virtualbox.repo
-        owner=root
-        group=root
-        mode=0644
-
-    - name: download MySQL repo
-      get_url: >
-        url=http://dev.mysql.com/get/{{ mysql_rpm }}
-        dest=/tmp/ {{ mysql_rpm }}
-
-    - name: install MySQL repo
-      sudo: true
-      yum: >
-        pkg=/tmp/{{ mysql_rpm }}
-        state=present
-
-	- name: install packages
+  vars:  	
+  roles:
+    - fstrim
+    - google_gpg_key
+    - google_chrome
+    - google_talk_plugin
+    - virtualbox (needs updated kernel stuff to build modules first)
+    - vagrant
+    - sublime_text
+    - docker
+  tasks:
+	 - name: install packages
       sudo: true
       yum: pkg={{ item }} state=present
       with_items:
+        - dconf-editor
+        - screen
         - gnome-tweak-tool
-        - google-chrome-stable
         - google-droid-sans-fonts
         - google-droid-sans-mono-fonts
         - google-droid-serif-fonts
-        - google-talkplugin
         - vim
-        - vim-X11
-        - zsh
+        - fish
         - kernel-devel
         - gcc
-        - VirtualBox-4.3
-
-    - name: enable fstrim discards in LVM
-      sudo: true
-      lineinfile: >
-        dest=/etc/lvm/lvm.conf
-        regexp=issue_discards\ =
-        line=issue_discards\ =\ 1
-
-    - name: download Vagrant
-      get_url: >
-        url=https://dl.bintray.com/mitchellh/vagrant/{{ vagrant_rpm }}
-        dest=/tmp/{{ vagrant_rpm }}
-
-    - name: install Vagrant
-      sudo: true
-      yum: >
-        pkg=/tmp/{{ vagrant_rpm }}
-        state=present
-
-    - name: download Sublime Text
-      get_url: >
-        url=http://c758482.r82.cf2.rackcdn.com/{{ st3_tar }}
-        dest=/tmp/{{ st3_tar }}
-
-    - name: install Sublime Text
-      sudo: true
-      unarchive: >
-        src=/tmp/{{ st3_tar }}
-        dest=/opt
-        copy=no
-
-    - name: create Sublime Text shell link
-      sudo: true
-      file: >
-        src={{ st3_dir }}/sublime_text
-        dest=/usr/local/bin/subl
-        owner=root
-        group=root
-        state=link
-
-    - name: copy Sublime Text desktop item
-      sudo: true
-      file: >
-        src={{ st3_dir }}/sublime_text.desktop
-        dest=/usr/share/applications/sublime_text.desktop
-        owner=root
-        group=root
-
-    - name: fix Sublime Text icon
-      sudo: true
-      lineinfile: >
-        dest=/usr/share/applications/sublime_text.desktop
-        regexp=^Icon=
-        line=Icon={{ st3_dir }}/Icon/128x128/sublime-text.png
-
-    - name: install Package Control
-      sudo: true
-      get_url: >
-        url=https://sublime.wbond.net/Package%20Control.sublime-package
-        dest={{ st3_dir }}/Packages/Package\ Control.sublime-package
-        owner=root
-        group=root
-        mode=0664

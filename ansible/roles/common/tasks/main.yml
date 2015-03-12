@@ -1,0 +1,14 @@
+---
+# tasks file for common
+
+- name: install common packages
+  sudo: true
+  yum: pkg={{ item }} state=present
+  with_items:
+	- dconf-editor
+	- screen
+	- gnome-tweak-tool
+	- google-droid-sans-fonts
+	- google-droid-sans-mono-fonts
+	- google-droid-serif-fonts
+	- vim

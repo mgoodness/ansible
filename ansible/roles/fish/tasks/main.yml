@@ -1,0 +1,8 @@
+---
+# tasks file for fish
+
+- name: install fish shell
+  sudo: true
+  yum: pkg=fish state=present
+
+- name: change current users's shell to fish

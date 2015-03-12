@@ -1,5 +1,5 @@
-# Ansible
 ---
+# tasks file for google_talk_plugin
 
 - name: add Google Talk plugin repo
   sudo: true

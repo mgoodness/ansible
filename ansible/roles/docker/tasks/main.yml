@@ -1,0 +1,11 @@
+---
+# tasks file for docker
+
+- name: install Docker
+  sudo: true
+  yum: pkg=docker state=present
+
+- name: allow Docker to connect to all TCP ports
+  sudo: true
+  command: /usr/bin/setsebool docker_connect_any 1
+  

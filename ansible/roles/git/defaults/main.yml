@@ -1,0 +1,5 @@
+---
+# defaults file for git
+
+email_address: {{ ansible_user_id }}@{{ ansible_domain }}
+full_name: {{ ansible_user_id }}

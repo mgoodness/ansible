@@ -1,0 +1,39 @@
+---
+# tasks file for sublime_text
+
+- name: download Sublime Text
+  get_url: >
+    url=http://c758482.r82.cf2.rackcdn.com/{{ st3_tar }}
+    dest=/tmp/{{ st3_tar }}
+
+- name: install Sublime Text
+  sudo: true
+  unarchive: >
+    src=/tmp/{{ st3_tar }}
+    dest=/opt
+    copy=no
+
+- name: copy Sublime Text desktop item
+  sudo: true
+  file: >
+    src={{ st3_dir }}/sublime_text.desktop
+    dest=/usr/share/applications/sublime_text.desktop
+    owner=root
+    group=root
+    mode=0644
+
+- name: fix Sublime Text icon
+  sudo: true
+  lineinfile: >
+    dest=/usr/share/applications/sublime_text.desktop
+    regexp=^Icon=
+    line=Icon={{ st3_dir }}/Icon/128x128/sublime-text.png
+
+- name: install Package Control
+  sudo: true
+  get_url: >
+    url=https://sublime.wbond.net/Package%20Control.sublime-package
+    dest={{ st3_dir }}/Packages/Package\ Control.sublime-package
+    owner=root
+    group=root
+    mode=0664

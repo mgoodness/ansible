@@ -1,0 +1,25 @@
+---
+# tasks file for git
+
+- name: install Git
+  sudo: true
+  yum: pkg=git state=present
+  tags: git
+
+- name: create global gitignore file for current user
+  copy: >
+    src=gitignore_global
+    dest=~/.gitignore_global
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
+    tags: git
+
+- name: create gitconfig file for current user
+  template: >
+    src=gitconfig.j2
+    dest=~/.gitconfig
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
+    tags: git

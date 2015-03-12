@@ -1,8 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-# Ansible
-sudo yum install -y ansible
-ansible-playbook ~/configs/ansible/laptop.yml --ask-sudo-pass -v
+if [ $HOSTNAME == 'mgood-desktop' ]; then
+	ansible-playbook ~/configs/ansible/desktop.yml --ask-sudo-pass -v
+elif [ $HOSTNAME == 'wintermute' ]; then
+	ansible-playbook ~/configs/ansible/laptop.yml --ask-sudo-pass -v
+fi	
 
 # Git
 ln -sf ~/configs/gitconfig ~/.gitconfig
