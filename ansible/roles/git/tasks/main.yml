@@ -9,7 +9,7 @@
 - name: create global gitignore file for current user
   copy: >
     src=gitignore_global
-    dest=~/.gitignore_global
+    dest={{ homedir }}/.gitignore_global
     owner={{ username }}
     group={{ username }}
     mode=0644
@@ -18,7 +18,7 @@
 - name: create gitconfig file for current user
   template: >
     src=gitconfig.j2
-    dest=~/.gitconfig
+    dest={{ homedir }}/.gitconfig
     owner={{ username }}
     group={{ username }}
     mode=0644
