@@ -5,9 +5,13 @@
   sudo: true
   lineinfile: >
     dest=/etc/lvm/lvm.conf
-    regexp=issue_discards\ =
-    line=issue_discards\ =\ 1
+    regexp="(^\s+issue_discards) = 0"
+    line="\1 = 1"
+    backrefs=true
+  tags: fstrim
 
 - name: schedule weekly fstrim
   sudo: true
   service: name=fstrim.timer enabled=true
+  tags: fstrim
+
