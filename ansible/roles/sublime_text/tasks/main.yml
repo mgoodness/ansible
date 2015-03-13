@@ -5,6 +5,7 @@
   get_url: >
     url=http://c758482.r82.cf2.rackcdn.com/{{ st3_tar }}
     dest=/tmp/{{ st3_tar }}
+  tags: sublime_text
 
 - name: install Sublime Text
   sudo: true
@@ -12,22 +13,31 @@
     src=/tmp/{{ st3_tar }}
     dest=/opt
     copy=no
+  tags: sublime_text
 
-- name: copy Sublime Text desktop item
+- name: copy desktop item
   sudo: true
-  file: >
-    src={{ st3_dir }}/sublime_text.desktop
-    dest=/usr/share/applications/sublime_text.desktop
-    owner=root
-    group=root
-    mode=0644
+  command: >
+    cp {{ st3_dir }}/sublime_text.desktop {{ applications_dir }}
+    creates="{{ applications_dir }}/sublime_text.desktop"
+  tags: sublime_text
 
-- name: fix Sublime Text icon
+- name: fix path in desktop item
+  sudo: true
+  replace: >
+    dest={{ applications_dir }}/sublime_text.desktop
+    regexp="/opt/sublime_text/"
+    replace="/opt/sublime_text_3/"
+  tags: sublime_text
+
+- name: fix icon in desktop item
   sudo: true
   lineinfile: >
-    dest=/usr/share/applications/sublime_text.desktop
-    regexp=^Icon=
-    line=Icon={{ st3_dir }}/Icon/128x128/sublime-text.png
+    dest={{ applications_dir }}/sublime_text.desktop
+    regexp="(^Icon)=sublime-text"
+    line="\1={{ st3_dir }}/Icon/128x128/sublime-text.png"
+    backrefs=true
+  tags: sublime_text
 
 - name: install Package Control
   sudo: true
@@ -37,3 +47,5 @@
     owner=root
     group=root
     mode=0664
+  tags: sublime_text
+

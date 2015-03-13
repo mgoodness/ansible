@@ -3,3 +3,5 @@
 
 st3_dir: /opt/sublime_text_3
 st3_tar: sublime_text_3_build_3065_x64.tar.bz2
+applications_dir: /usr/share/applications
+
