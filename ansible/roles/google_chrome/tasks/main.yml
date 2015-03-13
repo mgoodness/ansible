@@ -9,7 +9,10 @@
     owner=root
     group=root
     mode=0644
+  tags: google_chrome
 
 - name: install Google Chrome (stable)
   sudo: true
   yum: pkg=google-chrome-stable state=present
+  tags: google_chrome
+
