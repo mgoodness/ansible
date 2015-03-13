@@ -1,0 +1,5 @@
+---
+# defaults file for virtualbox
+
+username: "{{ ansible_user_id }}"
+

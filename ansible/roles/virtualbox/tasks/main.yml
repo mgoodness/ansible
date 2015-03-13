@@ -1,6 +1,14 @@
 ---
 # tasks file for virtualbox
 
+- name: install kernel development packages
+  sudo: true
+  yum: pkg={{ item }} state=present
+  with_items:
+    - kernel-devel
+    - gcc
+  tags: virtualbox
+
 - name: add VirtualBox repo
   sudo: true
   get_url: >
@@ -9,13 +17,15 @@
     owner=root
     group=root
     mode=0644
+  tags: virtualbox
 
 - name: install VirtualBox 4.3
   sudo: true
   yum: pkg=VirtualBox-4.3 state=present
-
+  tags: virtualbox
 
 - name: add current user to VirtualBox group
   sudo: true
-  user: name={{ ansible_user_id }} groups=vboxusers append=true
-  
+  user: name={{ username }} groups=vboxusers append=true
+  tags: virtualbox
+
