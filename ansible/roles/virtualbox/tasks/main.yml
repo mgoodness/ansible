@@ -28,4 +28,3 @@
   sudo: true
   user: name={{ username }} groups=vboxusers append=true
   tags: virtualbox
-

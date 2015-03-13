@@ -122,4 +122,3 @@ galaxy_info:
   #- web
 dependencies:
   - role: google_gpg_key
-

@@ -7,4 +7,3 @@
     key=https://dl-ssl.google.com/linux/linux_signing_key.pub
     state=present
   tags: google_gpg_key
-

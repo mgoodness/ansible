@@ -15,4 +15,3 @@
   sudo: true
   yum: pkg=google-talkplugin state=present
   tags: google_talk_plugin
-

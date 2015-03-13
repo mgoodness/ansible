@@ -14,4 +14,3 @@
   sudo: true
   service: name=fstrim.timer enabled=true
   tags: fstrim
-

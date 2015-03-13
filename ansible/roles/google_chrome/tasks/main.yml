@@ -15,4 +15,3 @@
   sudo: true
   yum: pkg=google-chrome-stable state=present
   tags: google_chrome
-

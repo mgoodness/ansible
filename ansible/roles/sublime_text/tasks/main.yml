@@ -2,17 +2,12 @@
 # tasks file for sublime_text
 
 - name: download Sublime Text
-  get_url: >
-    url=http://c758482.r82.cf2.rackcdn.com/{{ st3_tar }}
-    dest=/tmp/{{ st3_tar }}
+  get_url: url={{ st3_url }} dest=/tmp/{{ st3_archive }}
   tags: sublime_text
 
 - name: install Sublime Text
   sudo: true
-  unarchive: >
-    src=/tmp/{{ st3_tar }}
-    dest=/opt
-    copy=no
+  unarchive: src=/tmp/{{ st3_archive }} dest=/opt copy=no
   tags: sublime_text
 
 - name: copy desktop item
@@ -27,7 +22,7 @@
   replace: >
     dest={{ applications_dir }}/sublime_text.desktop
     regexp="/opt/sublime_text/"
-    replace="/opt/sublime_text_3/"
+    replace="{{ st3_dir }}"
   tags: sublime_text
 
 - name: fix icon in desktop item
@@ -42,10 +37,9 @@
 - name: install Package Control
   sudo: true
   get_url: >
-    url=https://sublime.wbond.net/Package%20Control.sublime-package
+    url={{ pkgcntrl_url }}
     dest={{ st3_dir }}/Packages/Package\ Control.sublime-package
     owner=root
     group=root
     mode=0664
   tags: sublime_text
-
