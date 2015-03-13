@@ -13,7 +13,7 @@
     owner={{ username }}
     group={{ username }}
     mode=0644
-    tags: git
+  tags: git
 
 - name: create gitconfig file for current user
   template: >
@@ -22,4 +22,5 @@
     owner={{ username }}
     group={{ username }}
     mode=0644
-    tags: git
+  tags: git
+

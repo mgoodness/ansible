@@ -1,7 +1,8 @@
 ---
 # defaults file for git
 
-email_address: {{ ansible_user_id }}@{{ ansible_domain }}
-full_name: {{ ansible_user_id }}
-username: {{ ansible_user_id }}
-homedir: /home/{{ ansible_user_id }}
+email_address: "{{ ansible_user_id }}@{{ ansible_domain }}"
+full_name: "{{ ansible_user_id }}"
+username: "{{ ansible_user_id }}"
+homedir: "/home/{{ ansible_user_id }}"
+
