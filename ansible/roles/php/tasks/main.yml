@@ -8,9 +8,21 @@
     - php-pear-PHP-CodeSniffer
     - php-phpmd-PHP-PMD
     - npm
+  tags: php
 
 - name: configure npm global location
-  shell: npm config set prefix ~/.npm
+  shell: npm config set prefix {{ homedir }}/.npm
+  tags: php
 
 - name: install npm Less package
   npm: name=less state=present global=true
+  tags: php
+
+- name: download PhpStorm
+  get_url: url={{ phpstorm_url }} dest=/tmp{{ phpstorm_archive }}
+  tags: php
+
+- name: install PhpStorm
+  sudo: true
+  unarchive: src=/tmp/{{ phpstorm_archive }} dest=/opt copy=no
+  tags: php
