@@ -1,0 +1,12 @@
+---
+# tasks file for tlp
+
+- name: install TLP
+  sudo: true
+  yum: pkg=tlp state=present
+  tags: tlp
+
+- name: start TLP
+  sudo: true
+  service: name=tlp enabled=true state=started
+  tags: tlp
