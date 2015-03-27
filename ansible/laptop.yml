@@ -1,31 +1,19 @@
-# Ansible
 ---
+# file: laptop.yml
 
 - hosts: 127.0.0.1
   roles:
+    - { role: git, full_name: "Michael Goodness", email_address: "mgoodness@gmail.com" }
+    - fstrim
+    - xorg
+    - google_gpg_key
     - google_chrome
     - google_talk_plugin
+    - sublime_text
 
   vars:
     vagrant_rpm: vagrant_1.7.0_x86_64.rpm
-    st3_dir: /opt/sublime_text_3
-    st3_tar: sublime_text_3_build_3065_x64.tar.bz2
   tasks:    
-    - name: get 1920x1080 modeline
-      command: cvt -r 1920 1080 60
-      register: modeline
-      changed_when: false
-
-    - name: create xorg.conf with 1920x1080 modeline
-      sudo: true
-      template: >
-        src=xorg.conf.j2
-        dest=/etc/X11/xorg.conf
-        owner=root
-        group=root
-        mode=0644
-      notify: restart X
-
     - name: install packages
       sudo: true
       yum: pkg={{ item }} state=present
@@ -42,15 +30,6 @@
       sudo: true
       service: name=tlp enabled=true state=started
 
-    - name: schedule weekly fstrim
-      sudo: true
-      copy: >
-        src=fstrim.sh
-        dest=/etc/cron.weekly
-        owner=root
-        group=root
-        mode=0755
-
     - name: download Vagrant
       get_url: >
         url=https://dl.bintray.com/mitchellh/vagrant/{{ vagrant_rpm }}
@@ -61,53 +40,3 @@
       yum: >
         pkg=/tmp/{{ vagrant_rpm }}
         state=present
-
-    - name: download Sublime Text
-      get_url: >
-        url=http://c758482.r82.cf2.rackcdn.com/{{ st3_tar }}
-        dest=/tmp/{{ st3_tar }}
-
-    - name: install Sublime Text
-      sudo: true
-      unarchive: >
-        src=/tmp/{{ st3_tar }}
-        dest=/opt
-        copy=no
-
-    - name: create Sublime Text shell link
-      sudo: true
-      file: >
-        src={{ st3_dir }}/sublime_text
-        dest=/usr/local/bin/subl
-        owner=root
-        group=root
-        state=link
-
-    - name: copy Sublime Text desktop item
-      sudo: true
-      file: >
-        src={{ st3_dir }}/sublime_text.desktop
-        dest=/usr/share/applications/sublime_text.desktop
-        owner=root
-        group=root
-
-    - name: fix Sublime Text icon
-      sudo: true
-      lineinfile: >
-        dest=/usr/share/applications/sublime_text.desktop
-        regexp=^Icon=
-        line=Icon={{ st3_dir }}/Icon/128x128/sublime-text.png
-
-    - name: install Package Control
-      sudo: true
-      get_url: >
-        url=https://sublime.wbond.net/Package%20Control.sublime-package
-        dest={{ st3_dir }}/Packages/Package\ Control.sublime-package
-        owner=root
-        group=root
-        mode=0664
-
-  handlers:
-    - name: restart X
-      sudo: true
-      service: name=graphical.target state=restarted
