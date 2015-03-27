@@ -27,5 +27,10 @@
     - { user: "gdm", dir: "/var/lib/gdm" }
   tags: common
 
-# gsettings set org.gnome.desktop.wm.keybindings switch-group "['disabled']"
-# gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['disabled']"
+- name: disable certain GNOME keybindings
+  command: /bin/gsettings set org.gnome.desktop.wm.keybindings {{ item }} "['disabled']"
+  with_items:
+    - switch-group
+    - switch-group-backward
+  tags: common
+  
