@@ -11,6 +11,21 @@
 	- google-droid-sans-mono-fonts
 	- google-droid-serif-fonts
 	- vim
+  tags: common
+
+- name: create monitors config file for current user, root user & graphical login
+  sudo: true
+  copy: >
+    src=monitors.xml.{{ ansible_hostname }}
+    dest={{ items.dir }}/monitors.xml
+    owner={{ items.user }}
+    group={{ items.user }}
+    mode=0644
+  with_items:
+    - { user: {{ username }}, dir: {{ user_config_dir }} }
+    - { user: "root", dir: "/root/.config" }
+    - { user: "gdm", dir: "/var/lib/gdm" }
+  tags: common
 
 # gsettings set org.gnome.desktop.wm.keybindings switch-group "['disabled']"
 # gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['disabled']"

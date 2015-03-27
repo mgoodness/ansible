@@ -1,0 +1,68 @@
+<monitors version="1">
+  <configuration>
+    <clone>no</clone>
+    <output name="DVI-I-1">
+      <vendor>ACR</vendor>
+      <product>Acer G226HQL</product>
+      <serial>LVAAA0014200</serial>
+      <width>1920</width>
+      <height>1080</height>
+      <rate>60</rate>
+      <x>1920</x>
+      <y>0</y>
+      <rotation>normal</rotation>
+      <reflect_x>no</reflect_x>
+      <reflect_y>no</reflect_y>
+      <primary>no</primary>
+      <presentation>no</presentation>
+    </output>
+    <output name="VGA-0">
+      <vendor>ACR</vendor>
+      <product>Acer G226HQL</product>
+      <serial>LVAAA0014200</serial>
+      <width>1920</width>
+      <height>1080</height>
+      <rate>60</rate>
+      <x>0</x>
+      <y>0</y>
+      <rotation>normal</rotation>
+      <reflect_x>no</reflect_x>
+      <reflect_y>no</reflect_y>
+      <primary>yes</primary>
+      <presentation>no</presentation>
+    </output>
+  </configuration>
+  <configuration>
+    <clone>no</clone>
+    <output name="DVI-I-1">
+      <vendor>ACR</vendor>
+      <product>Acer G226HQL</product>
+      <serial>LVAAA0014200</serial>
+      <width>1920</width>
+      <height>1080</height>
+      <rate>60</rate>
+      <x>1920</x>
+      <y>0</y>
+      <rotation>normal</rotation>
+      <reflect_x>no</reflect_x>
+      <reflect_y>no</reflect_y>
+      <primary>no</primary>
+      <presentation>no</presentation>
+    </output>
+    <output name="VGA-1">
+      <vendor>ACR</vendor>
+      <product>Acer G226HQL</product>
+      <serial>LVAAA0014200</serial>
+      <width>1920</width>
+      <height>1080</height>
+      <rate>60</rate>
+      <x>0</x>
+      <y>0</y>
+      <rotation>normal</rotation>
+      <reflect_x>no</reflect_x>
+      <reflect_y>no</reflect_y>
+      <primary>yes</primary>
+      <presentation>no</presentation>
+    </output>
+  </configuration>
+</monitors>
