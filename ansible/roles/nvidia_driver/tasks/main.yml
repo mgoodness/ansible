@@ -8,4 +8,4 @@
     - "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_lsb.release }}.noarch.rpm"
 
 - name: install nVidia driver
-  yum: name=kmod-nvidia state=present
+  yum: name=kmod-nvidia-340xx state=present
