@@ -8,8 +8,9 @@
     - google_gpg_key
     - google_chrome
     - google_talk_plugin
+    - sublime_text
     - virtualbox
     - vagrant
-    - sublime_text
     - docker
-
+    - fish
+    - common
