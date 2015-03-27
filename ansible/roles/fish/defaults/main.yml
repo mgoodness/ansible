@@ -1,2 +1,5 @@
 ---
 # defaults file for fish
+
+username: "{{ ansible_user_id }}"
+homedir: "/home/{{ ansible_user_id }}"

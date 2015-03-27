@@ -1,8 +1,34 @@
 ---
 # tasks file for fish
 
-- name: install fish shell
+- name: install fish
   sudo: true
   yum: pkg=fish state=present
+  tags: fish
 
-- name: change current users's shell to fish
+- name: create fish_prompt function file for current user
+  copy: >
+    src=fish_prompt.fish
+    dest={{ fish_functions_dir }}/fish_prompt.fish
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
+  tags: fish
+
+# - name: create fishd file for current user
+#   copy: >
+#   	src=fishd
+#   	dest={{ fish_config_dir }}/fishd.{{ ansible_hostname }}
+#     owner={{ username }}
+#     group={{ username }}
+#     mode=0644
+#   tags: fish
+
+- name: create fish config file for current user
+  copy: >
+    src=config.fish
+    dest={{ fish_config_dir }}/config.fish
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
+  tags: fish
