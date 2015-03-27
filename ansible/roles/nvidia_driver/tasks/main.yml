@@ -1,0 +1,11 @@
+---
+# tasks file for nvidia_driver
+
+- name: add RPM Fusion repositories
+  yum: name={{ item }} disable_gpg_check=true state=present
+  with_items:
+    - "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_lsb.release }}.noarch.rpm"
+    - "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_lsb.release }}.noarch.rpm"
+
+- name: install nVidia driver
+  yum: name=kmod-nvidia state=present
