@@ -1,0 +1,21 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Ansible",
+		"ApplySyntax",
+		"Cisco Syntax Highlighter",
+		"Dockerfile Syntax Highlighting",
+		"fish-shell",
+		"GTKDarkThemeVariantSetter",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"Package Control",
+		"Puppet",
+		"SublimeGit",
+		"Sublimerge Pro",
+		"Vagrant"
+	]
+}

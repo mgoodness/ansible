@@ -1,0 +1,8 @@
+---
+# defaults file for sublime_text
+
+username: "{{ ansible_user_id }}"
+homedir: "/home/{{ ansible_user_id }}"
+sublimegit_email: ""
+sublimegit_product_key: ""
+sublimerge_key: ""

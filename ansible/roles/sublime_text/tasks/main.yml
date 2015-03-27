@@ -38,8 +38,35 @@
   sudo: true
   get_url: >
     url={{ pkgcntrl_url }}
-    dest={{ st3_dir }}/Packages/Package\ Control.sublime-package
+    dest="{{ st3_dir }}/Packages/Package Control.sublime-package"
     owner=root
     group=root
     mode=0664
+  tags: sublime_text
+
+- name: create SublimeGit settings file for current user
+  template: >
+    src=SublimeGit.sublime-settings.j2
+    dest={{ st3_user_config_dir }}/SublimeGit.sublime-settings
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
+  tags: sublime_text
+
+- name: create Sublimerge license file for current user
+  template: >
+    src=Sublimerge.sublime-license.j2
+    dest={{ st3_user_config_dir }}/Sublimerge.sublime-license
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
+  tags: sublime_text
+
+- name: create other settings files for current user
+  copy: >
+    src=/
+    dest={{ st3_user_config_dir }}
+    owner={{ username }}
+    group={{ username }}
+    mode=0644
   tags: sublime_text
