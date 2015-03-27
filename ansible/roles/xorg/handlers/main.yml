@@ -1,0 +1,7 @@
+---
+# handlers file for xorg
+
+- name: restart X
+  sudo: true
+  service: name=graphical.target state=restarted
+  

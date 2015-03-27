@@ -1,0 +1,20 @@
+Section "Monitor"
+    Identifier "Monitor0"
+    Modeline   "{{ modeline.stdout | regex_replace('.*\nModeline\s(.*)', '\\1') }}"
+EndSection
+
+Section "Device"
+    Identifier "Card0"
+    Driver     "{{ driver }}"
+    BusID      "{{ bus_id }}"
+EndSection
+
+Section "Screen"
+    Identifier "Screen0"
+    Device     "Card0"
+    Monitor    "Monitor0"
+    SubSection "Display"
+        Viewport 0 0
+        Depth    24
+    EndSubSection
+EndSection

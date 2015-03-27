@@ -1,0 +1,19 @@
+---
+# tasks file for xorg
+
+- name: get modeline
+  command: cvt -r {{ h_res }} {{ v_res }} {{ refresh }}
+  register: modeline
+  changed_when: false
+  tags: xorg
+
+- name: create xorg.conf with modeline
+  sudo: true
+  template: >
+    src=xorg.conf.j2
+    dest=/etc/X11/xorg.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: restart X
+  tags: xorg
