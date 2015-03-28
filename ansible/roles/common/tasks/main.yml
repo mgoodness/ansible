@@ -5,25 +5,24 @@
   sudo: true
   yum: pkg={{ item }} state=present
   with_items:
-	- screen
-	- gnome-tweak-tool
-	- google-droid-sans-fonts
-	- google-droid-sans-mono-fonts
-	- google-droid-serif-fonts
-	- vim
+    - screen
+    - gnome-tweak-tool
+    - google-droid-sans-fonts
+    - google-droid-sans-mono-fonts
+    - google-droid-serif-fonts
+    - vim
   tags: common
 
 - name: create monitors config file for current user, root user & graphical login
   sudo: true
   copy: >
     src=monitors.xml.{{ ansible_hostname }}
-    dest={{ items.dir }}/monitors.xml
-    owner={{ items.user }}
-    group={{ items.user }}
+    dest={{ item.dir }}/.config/monitors.xml
+    owner={{ item.user }}
+    group={{ item.user }}
     mode=0644
   with_items:
-    - { user: {{ username }}, dir: {{ user_config_dir }} }
-    - { user: "root", dir: "/root/.config" }
+    - { user: "{{ username }}", dir: "{{ homedir }}" }
     - { user: "gdm", dir: "/var/lib/gdm" }
   tags: common
 
@@ -33,4 +32,4 @@
     - switch-group
     - switch-group-backward
   tags: common
-  
+

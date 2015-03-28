@@ -10,6 +10,14 @@
   unarchive: src=/tmp/{{ st3_archive }} dest=/opt copy=no
   tags: sublime_text
 
+- name: create subl link
+  sudo: true
+  file: >
+    path=/usr/local/bin/subl
+    src={{ st3_dir }}/sublime_text
+    state=link
+  tags: sublime_text
+
 - name: copy desktop item
   sudo: true
   command: >
@@ -22,7 +30,7 @@
   replace: >
     dest={{ applications_dir }}/sublime_text.desktop
     regexp="/opt/sublime_text/"
-    replace="{{ st3_dir }}"
+    replace="{{ st3_dir }}/"
   tags: sublime_text
 
 - name: fix icon in desktop item
@@ -42,6 +50,15 @@
     owner=root
     group=root
     mode=0664
+  tags: sublime_text
+
+- name: create configuration directory for current user
+  file: >
+    path={{ st3_user_config_dir }}
+    state=directory
+    owner={{ username }}
+    group={{ username }}
+    mode=0755
   tags: sublime_text
 
 - name: create SublimeGit settings file for current user
@@ -64,9 +81,11 @@
 
 - name: create other settings files for current user
   copy: >
-    src=/
+    src="{{ item }}"
     dest={{ st3_user_config_dir }}
     owner={{ username }}
     group={{ username }}
     mode=0644
+  with_fileglob:
+    - "*.sublime-settings"
   tags: sublime_text

@@ -1,6 +1,13 @@
 ---
 # tasks file for google_talk_plugin
 
+- name: import Google GPG key
+  sudo: true
+  rpm_key: >
+    key=https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state=present
+  tags: google_talk_plugin
+
 - name: add Google Talk plugin repo
   sudo: true
   copy: >

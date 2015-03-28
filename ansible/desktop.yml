@@ -6,7 +6,6 @@
     - { role: git, full_name: "Michael Goodness", email_address: "mgood@gbpinc.com" }
     - fstrim
     - nvidia_driver
-    - google_gpg_key
     - google_chrome
     - google_talk_plugin
     - sublime_text

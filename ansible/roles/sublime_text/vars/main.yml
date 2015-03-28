@@ -6,4 +6,5 @@ st3_url: "http://c758482.r82.cf2.rackcdn.com/{{ st3_archive }}"
 st3_dir: /opt/sublime_text_3
 applications_dir: /usr/share/applications
 pkgcntrl_url: "https://sublime.wbond.net/Package%20Control.sublime-package"
-st3_user_config_dir: "{{ homedir }}/.config/sublime-text/Packages/User"
+st3_user_config_dir: "{{ homedir }}/.config/sublime-text-3/Packages/User"
+

@@ -1,4 +1,5 @@
 ---
 # defaults file for common
 
-user_config_dir: "/home/{{ ansible_user_id }}/.config"
+homedir: "/home/{{ ansible_user_id }}"
+

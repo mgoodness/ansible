@@ -7,7 +7,6 @@
     - fstrim
     - tlp
     - xorg
-    - google_gpg_key
     - google_chrome
     - google_talk_plugin
     - sublime_text
@@ -16,4 +15,4 @@
     - docker
     - fish
     - common
-    
+
