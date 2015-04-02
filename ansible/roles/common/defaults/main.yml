@@ -1,5 +1,6 @@
 ---
 # defaults file for common
 
+username: "{{ ansible_user_id }}"
 homedir: "/home/{{ ansible_user_id }}"
 vinagre_items: []
