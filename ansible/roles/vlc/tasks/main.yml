@@ -1,0 +1,5 @@
+---
+# tasks file for vlc
+
+- name: install VLC
+  yum: name=vlc state=present
