@@ -1,5 +1,5 @@
 ---
-# file: desktop.yml
+# file: mgood-desktop.yml
 
 - hosts: 127.0.0.1
   roles:

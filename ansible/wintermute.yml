@@ -1,9 +1,10 @@
 ---
-# file: laptop.yml
+# file: wintermute.yml
 
 - hosts: 127.0.0.1
   roles:
     - { role: git, full_name: "Michael Goodness", email_address: "mgoodness@gmail.com" }
+    - kernel-devel
     - google_chrome
     - google_talk_plugin
     - sublime_text
