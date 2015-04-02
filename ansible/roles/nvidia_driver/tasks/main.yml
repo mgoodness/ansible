@@ -2,4 +2,16 @@
 # tasks file for nvidia_driver
 
 - name: install nVidia driver
+  sudo: true
   yum: name=kmod-nvidia-340xx state=present
+  tag: nvidia_driver
+
+- name: disable nVidia PowerMizer
+  sudo: true
+  copy: >
+    src=50-nvidia-powermizer.conf
+    dest=/etc/X11/xorg.conf.d
+    owner=root
+    group=root
+    mode=0644
+  tag: nvidia_driver
