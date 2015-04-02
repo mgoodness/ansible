@@ -13,6 +13,8 @@
     - vagrant
     - docker
     - fish
-    - common
+    - role: common
+      vinagre_items:
+        - { name: AccessVM, host: accessvm.gbpinc.com, username: accvmuser, protocol: rdp, port: 3389, fullscreen: 0, width: 1280, height: 1024 }
+        - { name: vCenter, host: vcenter.gbpinc.com, username: administrator, protocol: rdp, port: 3389, fullscreen: 0, width: 1280, height: 1024 }
     - vlc
-    

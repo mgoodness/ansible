@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vinagre-bookmarks>
+	{% for item in vinagre_items %}
+	<item>
+		<protocol>{{ item.protocol }}</protocol>
+		<name>{{ item.name }}</name>
+		<host>{{ item.host }}</host>
+		<username>{{ item.username }}</username>
+		<port>{{ item.port }}</port>
+		<fullscreen>{{ item.fullscreen }}</fullscreen>
+		<width>{{ item.width }}</width>
+		<height>{{ item.height }}</height>
+	</item>
+	{% endfor %}
+</vinagre-bookmarks>

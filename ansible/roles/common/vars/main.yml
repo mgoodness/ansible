@@ -1,2 +1,4 @@
 ---
 # vars file for common
+
+vinagre_user_config_dir: "{{ homedir }}/.local/share/vinagre"
