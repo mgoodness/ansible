@@ -4,6 +4,7 @@
 - hosts: 127.0.0.1
   roles:
     - { role: git, full_name: "Michael Goodness", email_address: "mgood@gbpinc.com" }
+    - ssh
     - fstrim
     - nvidia_driver
     - google_chrome
