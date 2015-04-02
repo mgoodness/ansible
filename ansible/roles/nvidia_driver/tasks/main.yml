@@ -4,7 +4,7 @@
 - name: install nVidia driver
   sudo: true
   yum: name=kmod-nvidia-340xx state=present
-  tag: nvidia_driver
+  tags: nvidia_driver
 
 - name: disable nVidia PowerMizer
   sudo: true
@@ -14,4 +14,4 @@
     owner=root
     group=root
     mode=0644
-  tag: nvidia_driver
+  tags: nvidia_driver
