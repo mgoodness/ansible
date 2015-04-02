@@ -1,14 +1,6 @@
 ---
 # tasks file for virtualbox
 
-- name: install kernel development packages
-  sudo: true
-  yum: pkg={{ item }} state=present
-  with_items:
-    - kernel-devel
-    - gcc
-  tags: virtualbox
-
 - name: add VirtualBox repo
   sudo: true
   get_url: >
