@@ -1,0 +1,4 @@
+---
+# vars file for ssh
+
+ssh_user_config_dir: {{ homedir }}/.ssh

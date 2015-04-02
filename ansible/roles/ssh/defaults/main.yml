@@ -1,0 +1,6 @@
+---
+# defaults file for ssh
+
+username: "{{ ansible_user_id }}"
+homedir: "/home/{{ ansible_user_id }}"
+ssh_keys: []
