@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<vinagre-bookmarks><item><protocol>rdp</protocol><name>AccessVM</name><host>accessvm.gbpinc.com</host><username>accvmuser</username><port>3389</port><fullscreen>0</fullscreen><width>1280</width><height>1024</height></item><item><protocol>rdp</protocol><name>vCenter</name><host>vcenter.gbpinc.com</host><username>administrator</username><port>3389</port><fullscreen>0</fullscreen><width>1280</width><height>1024</height></item></vinagre-bookmarks>
