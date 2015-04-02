@@ -1,0 +1,20 @@
+<monitors version="1">
+  <configuration>
+    <clone>no</clone>
+    <output name="VGA-0">
+      <vendor>VBX</vendor>
+      <product>VBOX monitor</product>
+      <serial>0x03000400</serial>
+      <width>1280</width>
+      <height>960</height>
+      <rate>60</rate>
+      <x>0</x>
+      <y>0</y>
+      <rotation>normal</rotation>
+      <reflect_x>no</reflect_x>
+      <reflect_y>no</reflect_y>
+      <primary>yes</primary>
+      <presentation>no</presentation>
+    </output>
+  </configuration>
+</monitors>
