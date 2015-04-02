@@ -10,8 +10,9 @@ fi
 
 # Sublime Text
 mkdir -p ~/.config/sublime-text-3/Local
-cp License.sublime_license ~/.config/sublime-text-3/Local/
+cp ~/configs/License.sublime_license ~/.config/sublime-text-3/Local/
 
 # SSH
-rm -rf ~/.ssh
-ln -sf ~/configs/ssh ~/.ssh
+#rm -rf ~/.ssh
+#ln -sf ~/configs/ssh ~/.ssh
+

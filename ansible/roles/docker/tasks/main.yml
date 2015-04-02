@@ -6,14 +6,8 @@
   yum: pkg=docker state=present
   tags: docker
 
-- name: check Docker SELinux setting
-  command: getsebool docker_connect_any
-  register: docker_sebool
-  changed_when: false
+- name: set SELinux to allow connections
+  sudo: true
+  seboolean: name=docker_connect_any state=on persistent=true
   tags: docker
 
-- name: enable Docker SELinux setting
-  sudo: true
-  command: setsebool docker_connect_any 1
-  when: docker_sebool.stdout != "docker_connect_any --> on"
-  tags: docker

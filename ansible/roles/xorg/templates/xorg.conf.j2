@@ -1,6 +1,6 @@
 Section "Monitor"
     Identifier "Monitor0"
-    Modeline   "{{ modeline.stdout | regex_replace('.*\nModeline\s(.*)', '\\1') }}"
+    Modeline   {{ modeline.stdout | regex_replace('.*\nModeline\s(.*)', '\\1') }}
 EndSection
 
 Section "Device"

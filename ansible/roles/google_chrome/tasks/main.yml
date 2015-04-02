@@ -1,6 +1,13 @@
 ---
 # tasks file for google_chrome
 
+- name: import Google GPG key
+  sudo: true
+  rpm_key: >
+    key=https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state=present
+  tags: google_chrome
+
 - name: add Google Chrome repo
   sudo: true
   copy: >

@@ -6,29 +6,36 @@
   yum: pkg=fish state=present
   tags: fish
 
-- name: create fish_prompt function file for current user
-  copy: >
-    src=fish_prompt.fish
-    dest={{ fish_functions_dir }}/fish_prompt.fish
+- name: create configuration directory for current user
+  file: >
+    path={{ fish_config_dir }}
+    state=directory
     owner={{ username }}
     group={{ username }}
-    mode=0644
+    mode=0755
   tags: fish
 
-# - name: create fishd file for current user
-#   copy: >
-#   	src=fishd
-#   	dest={{ fish_config_dir }}/fishd.{{ ansible_hostname }}
-#     owner={{ username }}
-#     group={{ username }}
-#     mode=0644
-#   tags: fish
-
-- name: create fish config file for current user
+- name: copy fish config file for current user
   copy: >
     src=config.fish
-    dest={{ fish_config_dir }}/config.fish
+    dest={{ fish_config_dir }}
     owner={{ username }}
     group={{ username }}
     mode=0644
   tags: fish
+
+- name: copy fish functions for current user
+  copy: >
+    src=functions/
+    dest={{ fish_config_dir }}/functions
+    owner={{ username }}
+    group={{ username }}
+    directory_mode=0755
+    mode=0644
+  tags: fish
+
+- name: set shell to fish for current user
+  sudo: true
+  user: name={{ username }} shell=/usr/bin/fish
+  tags: fish
+

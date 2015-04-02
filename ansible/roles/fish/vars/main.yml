@@ -1,5 +1,5 @@
 ---
 # vars file for fish
 
-fish_config_dir: "{{ home_dir }}/.config/fish"
-fish_functions_dir: "{{ fish_config_dir }}/functions"
+fish_config_dir: "{{ homedir }}/.config/fish"
+
