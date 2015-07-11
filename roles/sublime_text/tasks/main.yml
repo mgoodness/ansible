@@ -1,50 +1,50 @@
 ---
 # tasks file for sublime_text
 
-- name: download Sublime Text
+- name: Download Sublime Text
   get_url: url={{ st3_url }} dest=/tmp/{{ st3_archive }}
   tags: sublime_text
 
-- name: install Sublime Text
+- name: Install Sublime Text
   sudo: true
   unarchive: src=/tmp/{{ st3_archive }} dest=/opt copy=no
   tags: sublime_text
 
-- name: create subl link
+- name: Create subl link
   sudo: true
-  file: >
+  file:
     path=/usr/local/bin/subl
     src={{ st3_dir }}/sublime_text
     state=link
   tags: sublime_text
 
-- name: copy desktop item
+- name: Copy desktop item
   sudo: true
-  command: >
+  command:
     cp {{ st3_dir }}/sublime_text.desktop {{ applications_dir }}
     creates="{{ applications_dir }}/sublime_text.desktop"
   tags: sublime_text
 
-- name: fix path in desktop item
+- name: Fix path in desktop item
   sudo: true
-  replace: >
+  replace:
     dest={{ applications_dir }}/sublime_text.desktop
     regexp="/opt/sublime_text/"
     replace="{{ st3_dir }}/"
   tags: sublime_text
 
-- name: fix icon in desktop item
+- name: Fix icon in desktop item
   sudo: true
-  lineinfile: >
+  lineinfile:
     dest={{ applications_dir }}/sublime_text.desktop
     regexp="(^Icon)=sublime-text"
     line="\1={{ st3_dir }}/Icon/128x128/sublime-text.png"
     backrefs=true
   tags: sublime_text
 
-- name: install Package Control
+- name: Install Package Control
   sudo: true
-  get_url: >
+  get_url:
     url={{ pkgcntrl_url }}
     dest="{{ st3_dir }}/Packages/Package Control.sublime-package"
     owner=root
@@ -52,8 +52,8 @@
     mode=0664
   tags: sublime_text
 
-- name: create configuration directory for current user
-  file: >
+- name: Create configuration directory for current user
+  file:
     path={{ st3_user_config_dir }}
     state=directory
     owner={{ username }}
@@ -61,8 +61,8 @@
     mode=0755
   tags: sublime_text
 
-- name: create SublimeGit settings file for current user
-  template: >
+- name: Create SublimeGit settings file for current user
+  template:
     src=SublimeGit.sublime-settings.j2
     dest={{ st3_user_config_dir }}/SublimeGit.sublime-settings
     owner={{ username }}
@@ -70,8 +70,8 @@
     mode=0644
   tags: sublime_text
 
-- name: create Sublimerge license file for current user
-  template: >
+- name: Create Sublimerge license file for current user
+  template:
     src=Sublimerge.sublime-license.j2
     dest={{ st3_user_config_dir }}/Sublimerge.sublime-license
     owner={{ username }}
@@ -79,8 +79,8 @@
     mode=0644
   tags: sublime_text
 
-- name: create other settings files for current user
-  copy: >
+- name: Create other settings files for current user
+  copy:
     src="{{ item }}"
     dest={{ st3_user_config_dir }}
     owner={{ username }}

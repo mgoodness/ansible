@@ -3,7 +3,7 @@
 
 - name: Install Git
   sudo: true
-  yum: pkg=git state=present
+  dnf: pkg=git state=present
   tags: git
 
 - name: Create global gitignore file for current user

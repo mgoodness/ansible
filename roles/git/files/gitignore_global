@@ -1,5 +1,6 @@
 .idea
-*.sublime-*
+*.sublime-project
+*.sublime-workspace
 
 # Compiled source #
 ###################
