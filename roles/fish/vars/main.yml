@@ -1,5 +1,4 @@
 ---
 # vars file for fish
 
-fish_config_dir: "{{ homedir }}/.config/fish"
-
+fish_config_dir: "/home/{{ ansible_user_id }}/.config/fish"

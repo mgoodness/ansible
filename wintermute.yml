@@ -1,17 +1,17 @@
 ---
-# file: wintermute.yml
+# file: wintermute-local.yml
 
 - hosts: 127.0.0.1
   roles:
     - git
     - fstrim
     - tlp
+    - common
+    - sublime_text
+    - google_chrome
+    - google_talk_plugin
+    - fish
 #    - ssh
 #    - kernel-devel
-#    - google_chrome
-#    - google_talk_plugin
-    - sublime_text
 #    - docker
-#    - fish
-#    - common
 #    - vlc

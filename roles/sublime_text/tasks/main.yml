@@ -2,51 +2,52 @@
 # tasks file for sublime_text
 
 - name: Download Sublime Text
-  get_url: url={{ st3_url }} dest=/tmp/{{ st3_archive }}
+  get_url: url={{ sublime_text_url }} dest=/tmp/{{ sublime_text_archive }}
   tags: sublime_text
 
 - name: Install Sublime Text
   sudo: true
-  unarchive: src=/tmp/{{ st3_archive }} dest=/opt copy=no
+  unarchive: src=/tmp/{{ sublime_text_archive }} dest=/opt copy=no
   tags: sublime_text
 
 - name: Create subl link
   sudo: true
   file:
     path=/usr/local/bin/subl
-    src={{ st3_dir }}/sublime_text
+    src={{ sublime_text_install_dir }}/sublime_text
     state=link
   tags: sublime_text
 
 - name: Copy desktop item
   sudo: true
   command:
-    cp {{ st3_dir }}/sublime_text.desktop {{ applications_dir }}
-    creates="{{ applications_dir }}/sublime_text.desktop"
+    cp {{ sublime_text_dir }}/sublime_text.desktop {{ sublime_text_applications_dir }}
+    creates="{{ sublime_text_applications_dir }}/sublime_text.desktop"
   tags: sublime_text
 
 - name: Fix path in desktop item
   sudo: true
   replace:
-    dest={{ applications_dir }}/sublime_text.desktop
+    dest={{ sublime_text_applications_dir }}/sublime_text.desktop
     regexp="/opt/sublime_text/"
-    replace="{{ st3_dir }}/"
+    replace="{{ sublime_text_install_dir }}/"
   tags: sublime_text
 
 - name: Fix icon in desktop item
   sudo: true
   lineinfile:
-    dest={{ applications_dir }}/sublime_text.desktop
+    dest={{ sublime_text_applications_dir }}/sublime_text.desktop
     regexp="(^Icon)=sublime-text"
-    line="\1={{ st3_dir }}/Icon/128x128/sublime-text.png"
+    line="\1={{ sublime_text_install_dir }}/Icon/128x128/sublime-text.png"
     backrefs=true
+    state=present
   tags: sublime_text
 
 - name: Install Package Control
   sudo: true
   get_url:
-    url={{ pkgcntrl_url }}
-    dest="{{ st3_dir }}/Packages/Package Control.sublime-package"
+    url={{ sublime_text_pkgcntrl_url }}
+    dest="{{ sublime_text_install_dir }}/Packages/Package Control.sublime-package"
     owner=root
     group=root
     mode=0664
@@ -54,37 +55,37 @@
 
 - name: Create configuration directory for current user
   file:
-    path={{ st3_user_config_dir }}
-    state=directory
-    owner={{ username }}
-    group={{ username }}
+    path={{ sublime_text_user_config_dir }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0755
+    state=directory
   tags: sublime_text
 
 - name: Create SublimeGit settings file for current user
   template:
     src=SublimeGit.sublime-settings.j2
-    dest={{ st3_user_config_dir }}/SublimeGit.sublime-settings
-    owner={{ username }}
-    group={{ username }}
+    dest={{ sublime_text_user_config_dir }}/SublimeGit.sublime-settings
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   tags: sublime_text
 
 - name: Create Sublimerge license file for current user
   template:
     src=Sublimerge.sublime-license.j2
-    dest={{ st3_user_config_dir }}/Sublimerge.sublime-license
-    owner={{ username }}
-    group={{ username }}
+    dest={{ sublime_text_user_config_dir }}/Sublimerge.sublime-license
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   tags: sublime_text
 
 - name: Create other settings files for current user
   copy:
     src="{{ item }}"
-    dest={{ st3_user_config_dir }}
-    owner={{ username }}
-    group={{ username }}
+    dest={{ sublime_text_user_config_dir }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   with_fileglob:
     - "*.sublime-settings"

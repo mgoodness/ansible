@@ -3,23 +3,23 @@
 
 - name: Install Git
   sudo: true
-  dnf: pkg=git state=present
+  dnf: name=git state=present
   tags: git
 
 - name: Create global gitignore file for current user
   copy:
     src=gitignore_global
-    dest={{ git_homedir }}/.gitignore_global
-    owner={{ git_username }}
-    group={{ git_groupname }}
+    dest=/home/{{ ansible_user_id }}/.gitignore_global
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   tags: git
 
 - name: Create gitconfig file for current user
   template:
     src=gitconfig.j2
-    dest={{ git_homedir }}/.gitconfig
-    owner={{ git_username }}
-    group={{ git_groupname }}
+    dest=/home/{{ ansible_user_id }}/.gitconfig
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   tags: git

@@ -1,16 +1,16 @@
 ---
 # tasks file for google_talk_plugin
 
-- name: import Google GPG key
+- name: Import Google GPG key
   sudo: true
-  rpm_key: >
+  rpm_key:
     key=https://dl-ssl.google.com/linux/linux_signing_key.pub
     state=present
   tags: google_talk_plugin
 
-- name: add Google Talk plugin repo
+- name: Add Google Talk plugin repo
   sudo: true
-  copy: >
+  copy:
     src=google-talkplugin.repo
     dest=/etc/yum.repos.d/google-talkplugin.repo
     owner=root
@@ -18,7 +18,7 @@
     mode=0644
   tags: google_talk_plugin
 
-- name: install Google Talk plugin
+- name: Install Google Talk plugin
   sudo: true
-  yum: pkg=google-talkplugin state=present
+  dnf: name=google-talkplugin state=present
   tags: google_talk_plugin

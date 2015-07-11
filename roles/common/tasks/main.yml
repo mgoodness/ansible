@@ -1,52 +1,49 @@
 ---
 # tasks file for common
 
-- name: install common packages
+- name: Install common packages
   sudo: true
-  yum: pkg={{ item }} state=present
+  dnf: name={{ item }} state=present
   with_items:
     - screen
     - gnome-tweak-tool
-    - google-droid-sans-fonts
-    - google-droid-sans-mono-fonts
-    - google-droid-serif-fonts
     - vim
   tags: common
 
-- name: create monitors config file for current user, root user & graphical login
-  sudo: true
-  copy: >
-    src=monitors.xml.{{ ansible_hostname }}
-    dest={{ item.dir }}/.config/monitors.xml
-    owner={{ item.user }}
-    group={{ item.user }}
-    mode=0644
-  with_items:
-    - { user: "{{ username }}", dir: "{{ homedir }}" }
-    - { user: "gdm", dir: "/var/lib/gdm" }
-  tags: common
+# - name: create monitors config file for current user, root user & graphical login
+#   sudo: true
+#   copy: >
+#     src=monitors.xml.{{ ansible_hostname }}
+#     dest={{ item.dir }}/.config/monitors.xml
+#     owner={{ item.user }}
+#     group={{ item.user }}
+#     mode=0644
+#   with_items:
+#     - { user: "{{ username }}", dir: "{{ homedir }}" }
+#     - { user: "gdm", dir: "/var/lib/gdm" }
+#   tags: common
 
-- name: disable certain GNOME keybindings for current user
-  command: /bin/gsettings set org.gnome.desktop.wm.keybindings {{ item }} "['disabled']"
-  with_items:
-    - switch-group
-    - switch-group-backward
-  tags: common
+# - name: disable certain GNOME keybindings for current user
+#   command: /bin/gsettings set org.gnome.desktop.wm.keybindings {{ item }} "['disabled']"
+#   with_items:
+#     - switch-group
+#     - switch-group-backward
+#   tags: common
 
-- name: create Vinagre configuration directory for current user
-  file: >
-    path={{ vinagre_user_config_dir }}
-    state=directory
-    owner={{ username }}
-    group={{ username }}
-    mode=0755
-  tags: common
+# - name: create Vinagre configuration directory for current user
+#   file: >
+#     path={{ vinagre_user_config_dir }}
+#     state=directory
+#     owner={{ username }}
+#     group={{ username }}
+#     mode=0755
+#   tags: common
 
-- name: create Vinagre bookmarks for current user
-  template: >
-    src=vinagre-bookmarks.xml.j2
-    dest={{ vinagre_user_config_dir }}/vinagre-bookmarks.xml
-    owner={{ username }}
-    group={{ username }}
-    mode=0644
-  tags: common
+# - name: create Vinagre bookmarks for current user
+#   template: >
+#     src=vinagre-bookmarks.xml.j2
+#     dest={{ vinagre_user_config_dir }}/vinagre-bookmarks.xml
+#     owner={{ username }}
+#     group={{ username }}
+#     mode=0644
+#   tags: common

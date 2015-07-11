@@ -3,7 +3,7 @@
 
 - name: Install TLP
   sudo: true
-  yum: pkg=tlp state=present
+  dnf: name=tlp state=present
   tags: tlp
 
 - name: Start TLP

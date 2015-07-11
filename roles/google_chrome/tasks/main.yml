@@ -1,16 +1,16 @@
 ---
 # tasks file for google_chrome
 
-- name: import Google GPG key
+- name: Import Google GPG key
   sudo: true
-  rpm_key: >
+  rpm_key:
     key=https://dl-ssl.google.com/linux/linux_signing_key.pub
     state=present
   tags: google_chrome
 
-- name: add Google Chrome repo
+- name: Add Google Chrome repo
   sudo: true
-  copy: >
+  copy:
     src=google-chrome.repo
     dest=/etc/yum.repos.d/google-chrome.repo
     owner=root
@@ -18,7 +18,7 @@
     mode=0644
   tags: google_chrome
 
-- name: install Google Chrome (stable)
+- name: Install Google Chrome (stable)
   sudo: true
-  yum: pkg=google-chrome-stable state=present
+  dnf: name=google-chrome-stable state=present
   tags: google_chrome

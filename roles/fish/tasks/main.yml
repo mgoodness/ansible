@@ -1,41 +1,40 @@
 ---
 # tasks file for fish
 
-- name: install fish
+- name: Install fish
   sudo: true
-  yum: pkg=fish state=present
+  dnf: name=fish state=present
   tags: fish
 
-- name: create configuration directory for current user
-  file: >
+- name: Create configuration directory for current user
+  file:
     path={{ fish_config_dir }}
-    state=directory
-    owner={{ username }}
-    group={{ username }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0755
+    state=directory
   tags: fish
 
-- name: copy fish config file for current user
-  copy: >
+- name: Copy fish config file for current user
+  copy:
     src=config.fish
     dest={{ fish_config_dir }}
-    owner={{ username }}
-    group={{ username }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   tags: fish
 
-- name: copy fish functions for current user
-  copy: >
+- name: Copy fish functions for current user
+  copy:
     src=functions/
     dest={{ fish_config_dir }}/functions
-    owner={{ username }}
-    group={{ username }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     directory_mode=0755
     mode=0644
   tags: fish
 
-- name: set shell to fish for current user
+- name: Set shell to fish for current user
   sudo: true
-  user: name={{ username }} shell=/usr/bin/fish
+  user: name={{ ansible_user_id }} shell=/usr/bin/fish
   tags: fish
-
