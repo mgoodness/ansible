@@ -1,16 +1,17 @@
 ---
 # tasks file for fstrim
 
-- name: enable fstrim discards in LVM
+- name: Enable fstrim discards in LVM
   sudo: true
-  lineinfile: >
+  lineinfile:
     dest=/etc/lvm/lvm.conf
     regexp="(^\s+issue_discards) = 0"
     line="\1 = 1"
     backrefs=true
+    state=present
   tags: fstrim
 
-- name: schedule weekly fstrim
+- name: Schedule weekly fstrim
   sudo: true
   service: name=fstrim.timer enabled=true
   tags: fstrim

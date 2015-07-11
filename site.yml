@@ -2,5 +2,4 @@
 # file: site.yml
 
 - include: mgood-desktop.yml
-- include: neuromancer.yml
 - include: wintermute.yml

@@ -3,14 +3,15 @@
 
 - hosts: 127.0.0.1
   roles:
-    - { role: git, full_name: "Michael Goodness", email_address: "mgoodness@gmail.com" }
-    - ssh
-    - kernel-devel
-    - google_chrome
-    - google_talk_plugin
+    - git
+    - fstrim
+    - tlp
+#    - ssh
+#    - kernel-devel
+#    - google_chrome
+#    - google_talk_plugin
     - sublime_text
-    - docker
-    - fish
-    - common
-    - vlc
-    
+#    - docker
+#    - fish
+#    - common
+#    - vlc

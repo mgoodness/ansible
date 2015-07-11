@@ -1,4 +1,5 @@
 .idea
+*.sublime-*
 
 # Compiled source #
 ###################
