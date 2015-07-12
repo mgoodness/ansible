@@ -1,5 +1,5 @@
 ---
-# file: wintermute-local.yml
+# file: wintermute.yml
 
 - hosts: 127.0.0.1
   roles:
@@ -11,7 +11,8 @@
     - google_chrome
     - google_talk_plugin
     - fish
-#    - ssh
+    - docker
+    - rpmfusion
+    - vlc
+    - ssh
 #    - kernel-devel
-#    - docker
-#    - vlc

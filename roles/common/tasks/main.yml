@@ -7,43 +7,80 @@
   with_items:
     - screen
     - gnome-tweak-tool
+    - dconf-editor
     - vim
   tags: common
 
-# - name: create monitors config file for current user, root user & graphical login
+- name: Show date in top bar for current user
+  command: gsettings set org.gnome.desktop.interface clock-show-date true
+  tags: common
+
+- name: Set automatic timezone change for current user
+  command: gsettings set org.gnome.desktop.datetime automatic-timezone true
+  tags: common
+
+- name: Change home folder keyboard shortuct for current user
+  command: gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
+  tags: common
+
+- name: Apply global dark theme for current user
+  ini_file:
+    dest=/home/{{ ansible_user_id }}/.config/gtk-3.0/settings.ini
+    option=gtk-application-prefer-dark-theme
+    section=Settings
+    value=1
+  tags: common
+
+# - name: Create terminal keyboard shortcut for current user
+#   command: gsettings set {{ item.schema }} {{ item.key }} {{ item.value }}
+#   with_items:
+#     - schema: org.gnome.settings-daemon.plugins.media-keys
+#       key: custom-keybindings
+#       value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+#     - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0
+#       key: name
+#       value: 'Terminal'
+#     - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0
+#       key: command
+#       value: 'gnome-terminal'
+#     - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0
+#       key: binding
+#       value: '<Super>t'
+#     # - schema: org.gnome.desktop.wm.keybindings
+#     #   key: switch-group
+#     #   value: "['disabled']"
+#     # - schema: org.gnome.desktop.wm.keybindings
+#     #   key: switch-group-backward
+#     #   value: "['disabled']"
+#   tags: common
+
+# - name: Create monitors config file for current user, root user & graphical login
 #   sudo: true
-#   copy: >
+#   copy:
 #     src=monitors.xml.{{ ansible_hostname }}
 #     dest={{ item.dir }}/.config/monitors.xml
 #     owner={{ item.user }}
 #     group={{ item.user }}
 #     mode=0644
 #   with_items:
-#     - { user: "{{ username }}", dir: "{{ homedir }}" }
+#     - { user: "{{ ansible_user_id }}", dir: "/home/{{ ansible_user_id }}" }
 #     - { user: "gdm", dir: "/var/lib/gdm" }
 #   tags: common
 
-# - name: disable certain GNOME keybindings for current user
-#   command: /bin/gsettings set org.gnome.desktop.wm.keybindings {{ item }} "['disabled']"
-#   with_items:
-#     - switch-group
-#     - switch-group-backward
-#   tags: common
-
-# - name: create Vinagre configuration directory for current user
-#   file: >
+# - name: Create Vinagre configuration directory for current user
+#   file:
 #     path={{ vinagre_user_config_dir }}
 #     state=directory
-#     owner={{ username }}
-#     group={{ username }}
+#     owner={{ ansible_user_id }}
+#     group={{ ansible_user_id }}
 #     mode=0755
 #   tags: common
 
-# - name: create Vinagre bookmarks for current user
-#   template: >
+# - name: Create Vinagre bookmarks for current user
+#   template:
 #     src=vinagre-bookmarks.xml.j2
 #     dest={{ vinagre_user_config_dir }}/vinagre-bookmarks.xml
-#     owner={{ username }}
-#     group={{ username }}
+#     owner={{ ansible_user_id }}
+#     group={{ ansible_user_id }}
 #     mode=0644
 #   tags: common

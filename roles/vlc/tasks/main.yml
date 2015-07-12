@@ -1,6 +1,7 @@
 ---
 # tasks file for vlc
 
-- name: install VLC
+- name: Install VLC
   sudo: true
-  yum: name=vlc state=present
+  dnf: name=vlc state=present
+  tags: vlc

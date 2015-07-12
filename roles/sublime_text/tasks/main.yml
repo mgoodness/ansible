@@ -21,7 +21,7 @@
 - name: Copy desktop item
   sudo: true
   command:
-    cp {{ sublime_text_dir }}/sublime_text.desktop {{ sublime_text_applications_dir }}
+    cp {{ sublime_text_install_dir }}/sublime_text.desktop {{ sublime_text_applications_dir }}
     creates="{{ sublime_text_applications_dir }}/sublime_text.desktop"
   tags: sublime_text
 

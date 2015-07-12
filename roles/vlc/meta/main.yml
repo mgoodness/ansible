@@ -121,4 +121,4 @@ galaxy_info:
   #- system
   #- web
 dependencies:
-  - rpmfusion  
+  - rpmfusion

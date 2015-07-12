@@ -1,13 +1,12 @@
 ---
 # tasks file for docker
 
-- name: install Docker
+- name: Install Docker
   sudo: true
-  yum: pkg=docker state=present
+  dnf: name=docker state=present
   tags: docker
 
-- name: set SELinux to allow connections
+- name: Set SELinux to allow connections
   sudo: true
-  seboolean: name=docker_connect_any state=on persistent=true
+  seboolean: name=docker_connect_any persistent=true state=on
   tags: docker
-

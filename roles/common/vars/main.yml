@@ -1,4 +1,4 @@
 ---
 # vars file for common
 
-vinagre_user_config_dir: "{{ homedir }}/.local/share/vinagre"
+vinagre_user_config_dir: "/home/{{ ansible_user_id }}/.local/share/vinagre"

@@ -1,31 +1,31 @@
 ---
 # tasks file for ssh
 
-- name: create configuration directory for current user
-  file: >
+- name: Create configuration directory for current user
+  file:
     path={{ ssh_user_config_dir }}
-    state=directory
-    owner={{ username }}
-    group={{ username }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0750
+    state=directory
   tags: ssh
 
-- name: install SSH private keys for current user
-  copy: >
+- name: Install SSH private keys for current user
+  copy:
     content="{{ item.private_key }}"
     dest={{ ssh_user_config_dir }}/{{ item.keyname }}
-    owner={{ username }}
-    group={{ username }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0600
   with_items: ssh_keys
   tags: ssh
 
-- name: install SSH public keys for current user
-  copy: >
+- name: Install SSH public keys for current user
+  copy:
     content="{{ item.public_key }}"
     dest={{ ssh_user_config_dir }}/{{ item.keyname }}.pub
-    owner={{ username }}
-    group={{ username }}
+    owner={{ ansible_user_id }}
+    group={{ ansible_user_id }}
     mode=0644
   with_items: ssh_keys
   tags: ssh
