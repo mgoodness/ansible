@@ -1,11 +1,7 @@
 ---
 # tasks file for vagrant
 
-- name: download Vagrant
-  get_url: url={{ vagrant_url }} dest=/tmp/{{ vagrant_rpm }}
-  tags: vagrant
-
-- name: install Vagrant
+- name: Install Vagrant
   sudo: true
-  yum: pkg=/tmp/{{ vagrant_rpm }} state=present
+  dnf: name=vagrant state=present
   tags: vagrant

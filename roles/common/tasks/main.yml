@@ -23,6 +23,13 @@
   command: gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>e'
   tags: common
 
+# - schema: org.gnome.desktop.wm.keybindings
+#   key: switch-group
+#   value: "['disabled']"
+# - schema: org.gnome.desktop.wm.keybindings
+#   key: switch-group-backward
+#   value: "['disabled']"
+
 - name: Apply global dark theme for current user
   ini_file:
     dest=/home/{{ ansible_user_id }}/.config/gtk-3.0/settings.ini
@@ -31,28 +38,22 @@
     value=1
   tags: common
 
-# - name: Create terminal keyboard shortcut for current user
-#   command: gsettings set {{ item.schema }} {{ item.key }} {{ item.value }}
-#   with_items:
-#     - schema: org.gnome.settings-daemon.plugins.media-keys
-#       key: custom-keybindings
-#       value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
-#     - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0
-#       key: name
-#       value: 'Terminal'
-#     - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0
-#       key: command
-#       value: 'gnome-terminal'
-#     - schema: org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0
-#       key: binding
-#       value: '<Super>t'
-#     # - schema: org.gnome.desktop.wm.keybindings
-#     #   key: switch-group
-#     #   value: "['disabled']"
-#     # - schema: org.gnome.desktop.wm.keybindings
-#     #   key: switch-group-backward
-#     #   value: "['disabled']"
-#   tags: common
+- name: Create terminal keyboard shortcut for current user
+  command: gsettings set {{ item.schema }} {{ item.key }} {{ item.value }}
+  with_items:
+    - schema: org.gnome.settings-daemon.plugins.media-keys
+      key: custom-keybindings
+      value: "\"['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']\""
+    - schema: "{{ common_terminal_dconf_schema_start }}:{{ common_terminal_dconf_schema_end }}"
+      key: name
+      value: 'Terminal'
+    - schema: "{{ common_terminal_dconf_schema_start }}:{{ common_terminal_dconf_schema_end }}"
+      key: command
+      value: 'gnome-terminal'
+    - schema: "{{ common_terminal_dconf_schema_start }}:{{ common_terminal_dconf_schema_end }}"
+      key: binding
+      value: '<Super>t'
+  tags: common
 
 # - name: Create monitors config file for current user, root user & graphical login
 #   sudo: true

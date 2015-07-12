@@ -15,4 +15,5 @@
     - rpmfusion
     - vlc
     - ssh
+    - vagrant
 #    - kernel-devel
