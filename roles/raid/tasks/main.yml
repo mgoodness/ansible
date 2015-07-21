@@ -35,5 +35,5 @@
 
 - name: Create /etc/mdadm.conf
   sudo: true
-  template: dest=/etc/mdadm.conf src= mdadm.conf.j2
+  template: dest=/etc/mdadm.conf src=mdadm.conf.j2
   tags: raid
