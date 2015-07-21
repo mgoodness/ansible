@@ -33,7 +33,7 @@
 - name: Configure GRUB
   sudo: true
   command: grub2-mkconfig -o /boot/grub2/grub.cfg
-  when: grub_conf | changed
+  when: grub_conf.changed == true
   tags: ssd
 
 - name: Enable fstrim discards in LVM
