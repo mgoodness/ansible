@@ -3,6 +3,9 @@
 
 - hosts: storage_hosts
   roles:
-    - networking
+    - git
+    - fstrim
     - common
+    - ssh
+    - networking
     - lvm
