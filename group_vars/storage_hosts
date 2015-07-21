@@ -1,9 +1,6 @@
 ---
 # file: group_vars/storage_hosts
 
-networking_firewall_enabled: true
-networking_manager_enabled: true
-
 lvm_volume_groups:
   - name: gluster0
     devices:

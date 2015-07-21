@@ -1,2 +1,24 @@
 ---
 # tasks file for raid
+
+- name: Install RAID package
+  sudo: true
+  yum: name=mdadm state=present
+  tags: raid
+
+- name: Check existing RAID devices
+  sudo: true
+  command: mdadm -D {{ item.device }}
+  ignore_errors: true
+  register: mdadm_status
+  with_items: raid_devices
+  tags: raid
+
+- name: Initialize RAID devices
+  sudo: true
+  command: >
+    mdadm -v --create {{ item.0.device }} --level={{ item.0.level }} --raid-devices={{ item.0.components | length }}
+    {{ item.0.components | join(" ") }}
+  when: mdadm_status.rc != 0
+  with_items: raid_devices
+  tags: raid

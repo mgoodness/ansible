@@ -13,6 +13,12 @@ network_interfaces:
       - 8.8.8.8
       - 8.8.4.4
 
-gluster_host:
-  name: node0-gluster
-  address: 10.10.30.200
+raid_alerts_email: 'mgoodness@gmail.com'
+raid_devices:
+  - device: /dev/md0
+    level: 10
+    components:
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
