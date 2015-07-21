@@ -3,8 +3,14 @@
 
 - name: Install common packages
   sudo: yes
+  dnf: name={{ item }}  state=present
+  with_items: common_packages
+  when: ansible_pkg_mgr == "dnf"
+  tags: common
+
+- name: Install common packages
+  sudo: yes
   yum: name={{ item }}  state=present
-  with_items:
-    - vim
-    - screen
+  with_items: common_packages
+  when: ansible_pkg_mgr == "yum"
   tags: common
