@@ -3,5 +3,5 @@
 
 - name: Restart Samba
   sudo: true
-  service: state=restarted
+  service: name=smb state=restarted
   tags: samba_server
