@@ -34,9 +34,9 @@
     name={{ item.0.mount_point }}
     opts={{ item.0.mount_options }}
     passno={{ item.0.mount_passno }}
-    src='UUID={{ item.1.result }}'
-    state=present
+    src='UUID={{ item.1.stdout }}'
+    state=mounted
   with_together:
     - lvm_logical_volumes
-    - blkids
+    - blkids.results
   tags: lvm
