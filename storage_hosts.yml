@@ -4,7 +4,7 @@
 - hosts: storage_hosts
   roles:
     - git
-    - fstrim
+    - ssd
     - common
     - ssh
     - networking

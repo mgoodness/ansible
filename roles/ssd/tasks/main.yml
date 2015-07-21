@@ -1,0 +1,45 @@
+---
+# tasks file for ssd
+
+- name: Don't write timestamps when files are accessed
+  sudo: true
+  replace:
+    dest=/etc/fstab
+    regexp="(\s+defaults)(\s+)"
+    replace="\1,noatime\2"
+  tags: ssd
+
+- name: Set swappiness and cache pressure
+  sudo: true
+  sysctl: name={{ item.name }} reload=true state=present value={{ item.value }}
+  with_items:
+    - name: vm.swappiness
+      value: 1
+    - name: vm.vfs_cache_pressure
+      value: 50
+  tags: ssd
+
+- name: Use SSD-friendly IO scheduler
+  sudo: true
+  lineinfile:
+    backrefs=true
+    dest=/etc/default/grub
+    line="\1\2 elevator=deadline\""
+    regexp="(^GRUB_CMDLINE_LINUX=\")(.*)\""
+    state=present
+  tags: ssd
+
+- name: Enable fstrim discards in LVM
+  sudo: true
+  lineinfile:
+    dest=/etc/lvm/lvm.conf
+    regexp="(^\s+issue_discards) = 0"
+    line="\1 = 1"
+    backrefs=true
+    state=present
+  tags: ssd
+
+- name: Schedule weekly fstrim
+  sudo: true
+  service: name=fstrim.timer enabled=true
+  tags: ssd

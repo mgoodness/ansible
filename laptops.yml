@@ -4,7 +4,7 @@
 - hosts: laptops
   roles:
     - git
-    - fstrim
+    - ssd
     - tlp
     - common
     - sublime_text
