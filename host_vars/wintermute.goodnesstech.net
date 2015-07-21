@@ -1,5 +1,0 @@
----
-# file: host_vars/wintermute.goodnesstech.net
-
-git_full_name: 'Michael Goodness'
-git_email_address: 'mgoodness@gmail.com'
