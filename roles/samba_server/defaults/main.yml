@@ -1,2 +1,8 @@
 ---
 # defaults file for samba_server
+
+samba_workgroup: 'WORKGROUP'
+samba_server_string: ''
+samba_security: 'user'
+samba_passdb_backend: 'tdbsam'
+samba_map_to_guest: 'bad user'

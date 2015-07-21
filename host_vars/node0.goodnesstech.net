@@ -51,5 +51,9 @@ lvm_logical_volumes:
     mount_options: defaults
     mount_passno: 0
 
+samba_netbios_name: STORAGE
+samba_workgroup: GOODNESSTECH
 samba_shares:
-  - path: /srv/shared_data
+  - name: shared
+    path: /srv/shared_data
+    public: yes
