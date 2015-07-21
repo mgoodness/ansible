@@ -54,7 +54,7 @@
 - name: Create weekly fstrim timer
   sudo: true
   copy: dest=/etc/systemd/system src=fstrim.timer  
-  when: fstrim_timer | not exists
+  when: fstrim_timer.stat.exists == false
   tags: ssd
 
 - name: Schedule weekly fstrim
