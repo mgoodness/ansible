@@ -27,13 +27,13 @@
   with_items: samba_shares
   tags: samba_server
 
-# - name: Configure Samba
-#   sudo: true
-#   template: backup=true dest=/etc/samba/smb.conf src=smb.conf.j2 validate='testparm -s %s'
-#   notify: Restart Samba
-#   tags: samba_server
+- name: Configure Samba
+  sudo: true
+  template: backup=true dest=/etc/samba/smb.conf src=smb.conf.j2 validate='testparm -s %s'
+  notify: Restart Samba
+  tags: samba_server
 
-# - name: Start Samba service
-#   sudo: true
-#   service: enabled=true name=smb state=started
-#   tags: samba_server
+- name: Start Samba service
+  sudo: true
+  service: enabled=true name=smb state=started
+  tags: samba_server
