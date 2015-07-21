@@ -27,6 +27,13 @@
     line="\1\2 elevator=deadline\""
     regexp="(?!.*elevator=deadline)(^GRUB_CMDLINE_LINUX=\")(.*)\""
     state=present
+  register: grub_conf
+  tags: ssd
+
+- name: Configure GRUB
+  sudo: true
+  command: grub2-mkconfig -o /boot/grub2/grub.cfg
+  when: grub_conf | changed
   tags: ssd
 
 - name: Enable fstrim discards in LVM
