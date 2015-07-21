@@ -1,21 +1,21 @@
 ---
 # file: mgood-desktop.yml
 
-- hosts: 127.0.0.1
-  roles:
-    - { role: git, full_name: "Michael Goodness", email_address: "mgood@gbpinc.com" }
-    - ssh
-    - fstrim
-    - nvidia_driver
-    - google_chrome
-    - google_talk_plugin
-    - sublime_text
-    - virtualbox
-    - vagrant
-    - docker
-    - fish
-    - role: common
-      vinagre_items:
-        - { name: AccessVM, host: accessvm.gbpinc.com, username: accvmuser, protocol: rdp, port: 3389, fullscreen: 0, width: 1280, height: 1024 }
-        - { name: vCenter, host: vcenter.gbpinc.com, username: administrator, protocol: rdp, port: 3389, fullscreen: 0, width: 1280, height: 1024 }
-    - vlc
+# - hosts: 127.0.0.1
+#   roles:
+#     - { role: git, full_name: "Michael Goodness", email_address: "mgood@gbpinc.com" }
+#     - ssh
+#     - fstrim
+#     - nvidia_driver
+#     - google_chrome
+#     - google_talk_plugin
+#     - sublime_text
+#     - virtualbox
+#     - vagrant
+#     - docker
+#     - fish
+#     - role: common
+#       vinagre_items:
+#         - { name: AccessVM, host: accessvm.gbpinc.com, username: accvmuser, protocol: rdp, port: 3389, fullscreen: 0, width: 1280, height: 1024 }
+#         - { name: vCenter, host: vcenter.gbpinc.com, username: administrator, protocol: rdp, port: 3389, fullscreen: 0, width: 1280, height: 1024 }
+#     - vlc
