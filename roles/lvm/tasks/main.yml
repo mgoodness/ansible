@@ -3,7 +3,7 @@
 
 - name: Create volume groups
   sudo: true
-  lvg: pvs={{ item.devices|join(',') }} vg={{ item.name }} state=present
+  lvg: pvs={{ item.devices | join(',') }} vg={{ item.name }} state=present
   with_items: lvm_volume_groups
   tags: lvm
 

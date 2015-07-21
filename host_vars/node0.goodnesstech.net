@@ -22,3 +22,16 @@ raid_devices:
       - /dev/sdd
       - /dev/sde
       - /dev/sdf
+
+lvm_volume_groups:
+  - name: raid10
+    devices:
+      - /dev/md0
+
+lvm_logical_volumes:
+  - name: ovirt_data
+    vg: raid10
+    size: 1T
+  - name: ovirt_engine
+    vg: raid10
+    size: 64G
