@@ -1,9 +1,12 @@
 ---
 # tasks file for samba_server
 
-- name: Install Samba package
+- name: Install Samba packages
   sudo: true
-  yum: name=samba state=present
+  yum: name={{ item }} state=present
+  with_items:
+    - samba
+    - libsemanage-python
   tags: samba_server
 
 - name: Set Samba SELinux boolean
