@@ -50,3 +50,6 @@ lvm_logical_volumes:
     mount_point: /srv/shared_data
     mount_options: defaults
     mount_passno: 0
+
+samba_shares:
+  - path: /srv/shared_data
