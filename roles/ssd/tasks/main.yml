@@ -46,6 +46,17 @@
     state=present
   tags: ssd
 
+- name: Check for fstrim.timer
+  stat: path=/usr/lib/systemd/system/fstrim.timer
+  register: fstrim_timer
+  tags: ssd
+
+- name: Create weekly fstrim timer
+  sudo: true
+  copy: dest=/etc/systemd/system src=fstrim.timer  
+  when: fstrim_timer | not exists
+  tags: ssd
+
 - name: Schedule weekly fstrim
   sudo: true
   service: name=fstrim.timer enabled=true
