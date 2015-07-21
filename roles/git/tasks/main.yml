@@ -4,6 +4,13 @@
 - name: Install Git
   sudo: true
   dnf: name=git state=present
+  when: ansible_pkg_mgr == "dnf"
+  tags: git
+
+- name: Install Git
+  sudo: true
+  yum: name=git state=present
+  when: ansible_pkg_mgr == "yum"
   tags: git
 
 - name: Create global gitignore file for current user
