@@ -1,0 +1,6 @@
+---
+# file: ovirt_hosts.yml
+
+- hosts: ovirt_hosts
+  roles:
+    - common

@@ -1,0 +1,14 @@
+---
+# tasks file for lvm
+
+- name: Create volume groups
+  sudo: true
+  lvg: pvs={{ item.devices|join(',') }} vg={{ item.name }} state=present
+  with_items: lvm_volume_groups
+  tags: lvm
+
+- name: Create logical volumes
+  sudo: true
+  lvol: lv={{ item.name }} size={{ item.size }} vg={{ item.vg }} state=present
+  with_items: lvm_logical_volumes
+  tags: lvm

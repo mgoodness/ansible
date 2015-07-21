@@ -1,0 +1,7 @@
+---
+# vars file for ui
+
+vinagre_user_config_dir: "/home/{{ ansible_user_id }}/.local/share/vinagre"
+
+ui_terminal_dconf_schema_start: "org.gnome.settings-daemon.plugins.media-keys.custom-keybinding"
+ui_terminal_dconf_schema_end: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"

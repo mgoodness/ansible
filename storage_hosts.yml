@@ -1,0 +1,8 @@
+---
+# file: storage_hosts.yml
+
+- hosts: storage_hosts
+  roles:
+    - networking
+    - common
+    - lvm

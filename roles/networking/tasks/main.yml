@@ -1,0 +1,20 @@
+---
+# tasks file for networking
+
+- name: Enable & start firewalld
+  sudo: true
+  service: enabled=true name=firewalld state=started
+  when: networking_firewall_enabled == true
+  tags: networking
+
+- name: Enable & start NetworkManager
+  sudo: true
+  service: enabled=true name=NetworkManager state=started
+  when: networking_manager_enabled == true
+  tags: networking
+
+# Won't work until Ansible v2.0
+#- name: Configure Ethernet connections
+  #nmcli: ifname={{ item.name }} type=ethernet ip4={{ item.address }} dns4={{ item.dns }} gw4={{ item.gateway }} state=present
+  #with_items: networking_interfaces
+  #tags: networking

@@ -2,4 +2,6 @@
 # file: site.yml
 
 - include: mgood-desktop.yml
-- include: laptop.yml
+- include: laptops.yml
+- include: storage_hosts.yml
+- include: ovirt_hosts.yml

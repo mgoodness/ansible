@@ -8,5 +8,11 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
-[laptop]
+[laptops]
 wintermute.goodnesstech.net
+
+[ovirt_hosts]
+node0.goodnesstech.net
+
+[storage_hosts]
+node0.goodnesstech.net
