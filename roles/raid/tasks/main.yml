@@ -9,8 +9,10 @@
 - name: Check existing RAID devices
   sudo: true
   command: mdadm -D {{ item.device }}
-  ignore_errors: true
   register: mdadm_status
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
   with_items: raid_devices
   tags: raid
 
@@ -19,6 +21,8 @@
   command: >
     mdadm -v --create {{ item.0.device }} --level={{ item.0.level }} --raid-devices={{ item.0.components | length }}
     {{ item.0.components | join(" ") }}
-  when: mdadm_status.rc != 0
-  with_items: raid_devices
+  when: item.1.rc != 0
+  with_together:
+    - raid_devices
+    - mdadm_status.results
   tags: raid
