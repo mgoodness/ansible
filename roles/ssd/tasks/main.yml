@@ -25,7 +25,7 @@
     backrefs=true
     dest=/etc/default/grub
     line="\1\2 elevator=deadline\""
-    regexp="(^GRUB_CMDLINE_LINUX=\")(.*)\""
+    regexp="(?!.*elevator=deadline)(^GRUB_CMDLINE_LINUX=\")(.*)\""
     state=present
   tags: ssd
 
