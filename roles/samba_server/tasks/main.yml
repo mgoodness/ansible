@@ -37,3 +37,7 @@
   sudo: true
   service: enabled=true name=smb state=started
   tags: samba_server
+
+- name: Start NetBIOS service
+  service: enabled=true name=nmb state=started
+  tags: samba_server

@@ -56,4 +56,4 @@ samba_workgroup: GOODNESSTECH
 samba_shares:
   - name: shared
     path: /srv/shared_data
-    public: yes
+    public: 'yes'
