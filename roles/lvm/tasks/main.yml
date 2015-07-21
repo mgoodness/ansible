@@ -12,3 +12,9 @@
   lvol: lv={{ item.name }} size={{ item.size }} vg={{ item.vg }} state=present
   with_items: lvm_logical_volumes
   tags: lvm
+
+- name: Create filesystems
+  sudo: true
+  filesystem: dev=/dev/mapper/{{ item.vg }}-{{ item.name }} fstype={{ item.filesystem }}  
+  with_items: lvm_logical_volumes
+  tags: lvm
