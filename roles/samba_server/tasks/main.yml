@@ -17,11 +17,11 @@
 - name: Create shared directories
   sudo: true
   file:
-    group="{{ item.group | default(users) }}"
+    group="{{ item.group | default('users') }}"
     mode="{{ item.directory_mode | default(0775) }}"
     owner=root
     path="{{ item.path }}"
-    setype="{{ item.setype | default(samba_share_t) }}"
+    setype="{{ item.setype | default('samba_share_t') }}"
     state=directory
   when: samba_shares is defined
   with_items: samba_shares
