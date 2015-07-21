@@ -18,3 +18,25 @@
   filesystem: dev=/dev/mapper/{{ item.vg }}-{{ item.name }} fstype={{ item.filesystem }}  
   with_items: lvm_logical_volumes
   tags: lvm
+
+- name: Get UUIDs
+  sudo: true
+  command: blkid /dev/mapper/{{ item.vg }}-{{ item.name }} -s UUID -o value
+  register: blkids
+  changed_when: false
+  with_items: lvm_logical_volumes
+  tags: lvm
+
+- name: Mount filesystems
+  sudo: true
+  mount:
+    fstype={{ item.0.filesystem }}
+    name={{ item.0.mount_point }}
+    opts={{ item.0.mount_options }}
+    passno={{ item.0.mount_passno }}
+    src='UUID={{ item.1.result }}'
+    state=present
+  with_together:
+    - lvm_logical_volumes
+    - blkids
+  tags: lvm

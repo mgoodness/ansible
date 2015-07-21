@@ -32,10 +32,14 @@ lvm_logical_volumes:
   - name: ovirt_data
     vg: raid10
     size: 1T
-    filesystem: ext4
+    filesystem: xfs
     mount_point: /srv/ovirt_data
+    mount_options: defaults
+    mount_passno: 0
   - name: ovirt_engine
     vg: raid10
     size: 64G
-    filesystem: ext4
+    filesystem: xfs
     mount_point: /srv/ovirt_engine
+    mount_options: defaults
+    mount_passno: 0
