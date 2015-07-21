@@ -1,2 +1,6 @@
 ---
 # defaults file for raid
+
+raid_alerts_email: root
+raid_alerts_from: raid@{{ ansible_fqdn }}
+raid_devices: []

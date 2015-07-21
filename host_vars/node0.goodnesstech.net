@@ -13,7 +13,7 @@ network_interfaces:
       - 8.8.8.8
       - 8.8.4.4
 
-raid_alerts_email: 'mgoodness@gmail.com'
+raid_alerts_email: mgoodness@gmail.com
 raid_devices:
   - device: /dev/md0
     level: 10

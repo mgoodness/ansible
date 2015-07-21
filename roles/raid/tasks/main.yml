@@ -10,7 +10,6 @@
   sudo: true
   command: mdadm -D {{ item.device }}
   register: mdadm_status
-  ignore_errors: true
   changed_when: false
   failed_when: false
   with_items: raid_devices
@@ -25,4 +24,16 @@
   with_together:
     - raid_devices
     - mdadm_status.results
+  tags: raid
+
+- name: Scan RAID devices
+  sudo: true
+  command: mdadm --detail --scan
+  register: mdadm_scan
+  changed_when: false
+  tags: raid
+
+- name: Create /etc/mdadm.conf
+  sudo: true
+  template: dest=/etc/mdadm.conf src= mdadm.conf.j2
   tags: raid
