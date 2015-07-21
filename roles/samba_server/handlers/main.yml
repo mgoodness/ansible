@@ -1,2 +1,7 @@
 ---
 # handlers file for samba_server
+
+- name: Restart Samba
+  sudo: true
+  service: state=restarted
+  tags: samba_server

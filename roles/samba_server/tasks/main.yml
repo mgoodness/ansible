@@ -1,2 +1,36 @@
 ---
 # tasks file for samba_server
+
+- name: Install Samba package
+  sudo: true
+  yum: name=samba state=present
+  tags: samba_server
+
+- name: Set Samba SELinux boolean
+  sudo: true
+  seboolean: name=samba_export_all_rw persistent=true state=true
+  tags: samba_server
+
+- name: Create shared directories
+  sudo: true
+  file:
+    group="{{ item.group | default(users) }}"
+    mode="{{ item.directory_mode | default(0775) }}"
+    owner=root
+    path="{{ item.path }}"
+    setype="{{ item.setype | default(samba_share_t) }}"
+    state=directory
+  when: samba_shares is defined
+  with_items: samba_shares
+  tags: samba_server
+
+# - name: Configure Samba
+#   sudo: true
+#   template: backup=true dest=/etc/samba/smb.conf src=smb.conf.j2 validate='testparm -s %s'
+#   notify: Restart Samba
+#   tags: samba_server
+
+# - name: Start Samba service
+#   sudo: true
+#   service: enabled=true name=smb state=started
+#   tags: samba_server

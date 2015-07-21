@@ -9,3 +9,4 @@
     - ssh
     - raid
     - lvm
+    - samba_server
