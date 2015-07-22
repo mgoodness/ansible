@@ -1,6 +1,6 @@
 ---
 # file: site.yml
 
-- include: laptops.yml
-- include: storage_hosts.yml
-- include: ovirt_hosts.yml
+- include: laptop.yml
+- include: storage_host.yml
+- include: ovirt_host.yml

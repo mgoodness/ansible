@@ -1,5 +1,5 @@
 ---
-# file: storage_hosts.yml
+# file: storage_host.yml
 
 - hosts: storage_hosts
   roles:

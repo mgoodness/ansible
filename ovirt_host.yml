@@ -1,5 +1,5 @@
 ---
-# file: ovirt_hosts.yml
+# file: ovirt_host.yml
 
 - hosts: ovirt_hosts
   roles:
