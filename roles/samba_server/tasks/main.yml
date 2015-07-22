@@ -44,3 +44,8 @@
   sudo: true
   service: enabled=true name=nmb state=started
   tags: samba_server
+
+- name: Configure firewalld for Samba
+  sudo: true
+  firewalld: permanent=true service=samba state=enabled
+  tags: samba_server
