@@ -10,6 +10,15 @@
     state=directory
   tags: ssh
 
+- name: Create SSH config for current user
+  copy:
+    dest={{ ssh_user_config_dir }}/config
+    group={{ ansible_user_id }}
+    mode=0600
+    owner={{ ansible_user_id }}
+    src=ssh_config 
+  tags: ssh
+
 - name: Install SSH private keys for current user
   copy:
     content="{{ item.private_key }}"
@@ -28,4 +37,5 @@
     group={{ ansible_user_id }}
     mode=0644
   with_items: ssh_keys
+  when: item.public_key is defined
   tags: ssh
