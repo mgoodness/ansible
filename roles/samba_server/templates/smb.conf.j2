@@ -30,7 +30,7 @@
   {% if share.force_group is defined %}
   force group = {{ share.force_group }}
   {% endif %}
-  create mask = {{ share.create_mask | default(0744) }}
-  directory mask = {{ share.directory_mask | default(0755) }}
+  create mask = {{ share.create_mask | default('0744') }}
+  directory mask = {{ share.directory_mask | default('0755') }}
 {% endfor %}
 {% endif%}

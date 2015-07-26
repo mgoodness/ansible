@@ -58,5 +58,5 @@ samba_shares:
     path: /srv/shared_data
     public: 'yes'
     force_group: 'users'
-    directory_mask: 0775
-    create_mask: 0764
+    directory_mask: '0775'
+    create_mask: '0764'
