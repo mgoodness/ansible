@@ -1,0 +1,9 @@
+users:
+  - mgoodness:
+    full_name: 'Michael Goodness'
+    email: 'mgoodness@gmail.com'
+    home: '/home/mgoodness'
+    groups:
+      - users
+      - wheel
+      - mgoodness
