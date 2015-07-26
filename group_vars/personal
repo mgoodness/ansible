@@ -3,7 +3,10 @@ users:
     full_name: 'Michael Goodness'
     email: 'mgoodness@gmail.com'
     home: '/home/mgoodness'
+    primary_group: mgoodness
     groups:
-      - users
-      - wheel
-      - mgoodness
+      - name: users
+        system: true
+      - name: wheel
+        system: true
+      - name: mgoodness

@@ -1,15 +1,13 @@
 ---
 # tasks file for users
 
-#gid = Optional `GID' to set for the group.
-#name = Name of the group to manage.
-#state = Whether the group should be present or not on the remote host.
-#system = If `yes', indicates that the group created is a system group.
-- name: Create user groups
+- name: Create groups
   sudo: true
-  group: name={{ item.name }} state=present  
+  group: name={{ item.1.name }} state=present system={{ item.1.system | default(false) }}
   when: users is defined
-  with_items: users
+  with_subelements:
+    - users
+    - groups
   tags: users
 
 #append = If `yes', will only add groups, not set them to just the list in `groups'.
@@ -41,8 +39,8 @@
   user:
     append=true
     comment="{{ item.full_name }}"
-    group={{ item.name }}
-    groups={{ item.groups | join(',') }}
+    group={{ item.primary_group }}
+    groups={{ item.groups | join(',', attribute='name') }}
     home={{ item.home }}
     name={{ item.name }}
     state=present
