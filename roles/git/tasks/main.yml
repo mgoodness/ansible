@@ -12,21 +12,3 @@
   yum: name=git state=present
   when: ansible_pkg_mgr == "yum"
   tags: git
-
-- name: Create global gitignore file for current user
-  copy:
-    src=gitignore_global
-    dest=/home/{{ ansible_user_id }}/.gitignore_global
-    owner={{ ansible_user_id }}
-    group={{ ansible_user_id }}
-    mode=0644
-  tags: git
-
-- name: Create gitconfig file for current user
-  template:
-    src=gitconfig.j2
-    dest=/home/{{ ansible_user_id }}/.gitconfig
-    owner={{ ansible_user_id }}
-    group={{ ansible_user_id }}
-    mode=0644
-  tags: git
