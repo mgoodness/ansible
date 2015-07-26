@@ -3,7 +3,7 @@
 
 - hosts: storage_hosts
   roles:
-  	- users
+    - users
     - git
     - ssd
     - common

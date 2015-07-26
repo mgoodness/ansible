@@ -7,7 +7,7 @@
 #system = If `yes', indicates that the group created is a system group.
 - name: Create user groups
   sudo: true
-  group: name={{ item }} state=present  
+  group: name={{ item.name }} state=present  
   when: users is defined
   with_items: users
   tags: users
@@ -40,13 +40,11 @@
   sudo: true
   user:
     append=true
-    comment={{ item.full_name }}
-    group={{ item }}
+    comment="{{ item.full_name }}"
+    group={{ item.name }}
     groups={{ item.groups | join(',') }}
     home={{ item.home }}
-    name={{ item }}
-    #password=
-    #shell=
+    name={{ item.name }}
     state=present
     update_password=on_create
   when: users is defined
