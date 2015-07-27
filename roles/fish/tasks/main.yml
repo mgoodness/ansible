@@ -1,6 +1,17 @@
 ---
 # tasks file for fish
 
+- name: Add fish repo
+  sudo: true
+  get_url: >
+    url={{ fish_centos_repo }}
+    dest=/etc/yum.repos.d/fish.repo
+    owner=root
+    group=root
+    mode=0644
+  when: ansible_distribution == "CentOS"
+  tags: fish
+
 - name: Install fish
   sudo: true
   dnf: name=fish state=present

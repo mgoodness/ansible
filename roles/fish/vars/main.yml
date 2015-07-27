@@ -1,0 +1,4 @@
+---
+# vars file for fish
+
+fish_centos_repo: "http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_{{ ansible_distribution_major_version }}/shells:fish:release:2.repo"

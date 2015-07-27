@@ -1,7 +1,7 @@
 ---
 # tasks file for virtualbox
 
-- name: add VirtualBox repo
+- name: Add VirtualBox repo
   sudo: true
   get_url: >
     url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
@@ -11,12 +11,12 @@
     mode=0644
   tags: virtualbox
 
-- name: install VirtualBox 4.3
+- name: Install VirtualBox 4.3
   sudo: true
   yum: pkg=VirtualBox-4.3 state=present
   tags: virtualbox
 
-- name: add current user to VirtualBox group
+- name: Add current user to VirtualBox group
   sudo: true
   user: name={{ username }} groups=vboxusers append=true
   tags: virtualbox
