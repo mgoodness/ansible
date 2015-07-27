@@ -121,5 +121,5 @@ galaxy_info:
   #- system
   #- web
 dependencies:
-  - rpmfusion
+  - role: rpmfusion
     tags: vlc
