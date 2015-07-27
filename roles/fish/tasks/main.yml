@@ -4,37 +4,18 @@
 - name: Install fish
   sudo: true
   dnf: name=fish state=present
+  when: ansible_pkg_mgr == "dnf"
   tags: fish
 
-- name: Create configuration directory for current user
-  file:
-    path={{ fish_config_dir }}
-    owner={{ ansible_user_id }}
-    group={{ ansible_user_id }}
-    mode=0755
-    state=directory
-  tags: fish
-
-- name: Copy fish config file for current user
-  copy:
-    src=config.fish
-    dest={{ fish_config_dir }}
-    owner={{ ansible_user_id }}
-    group={{ ansible_user_id }}
-    mode=0644
-  tags: fish
-
-- name: Copy fish functions for current user
-  copy:
-    src=functions/
-    dest={{ fish_config_dir }}/functions
-    owner={{ ansible_user_id }}
-    group={{ ansible_user_id }}
-    directory_mode=0755
-    mode=0644
-  tags: fish
-
-- name: Set shell to fish for current user
+- name: Install fish
   sudo: true
-  user: name={{ ansible_user_id }} shell=/usr/bin/fish
+  yum: name=fish state=present
+  when: ansible_pkg_mgr == "yum"
+  tags: fish
+
+- name: Set user's shell to fish
+  sudo: true
+  user: name={{ item.name }} shell=/usr/bin/fish
+  when: item.shell == "fish"
+  with_items: users
   tags: fish

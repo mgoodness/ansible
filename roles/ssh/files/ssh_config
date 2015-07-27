@@ -1,5 +1,0 @@
-Host salt-master
-    HostName salt.goodnesstech.net
-    Port 22
-    User centos
-    IdentityFile ~/.ssh/salt-master.pem

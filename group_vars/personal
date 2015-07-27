@@ -4,6 +4,7 @@ users:
     email: 'mgoodness@gmail.com'
     home: '/home/mgoodness'
     primary_group: mgoodness
+    shell: fish
     groups:
       - name: users
         system: true

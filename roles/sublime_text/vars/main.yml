@@ -6,4 +6,3 @@ sublime_text_url: "http://c758482.r82.cf2.rackcdn.com/{{ sublime_text_archive }}
 sublime_text_install_dir: /opt/sublime_text_3
 sublime_text_applications_dir: /usr/share/applications
 sublime_text_pkgcntrl_url: "https://sublime.wbond.net/Package%20Control.sublime-package"
-sublime_text_user_config_dir: "/home/{{ ansible_user_id }}/.config/sublime-text-3/Packages/User"

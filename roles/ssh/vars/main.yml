@@ -1,4 +1,0 @@
----
-# vars file for ssh
-
-ssh_user_config_dir: "/home/{{ ansible_user_id }}/.ssh"
