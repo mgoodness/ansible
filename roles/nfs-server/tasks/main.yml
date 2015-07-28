@@ -1,2 +1,28 @@
 ---
 # tasks file for nfs-server
+
+- name: Install NFS package
+  sudo: true
+  yum: name=nfs-utils state=present
+  tags: nfs-server
+
+- name: Set ownership for NFS shares
+  sudo: true
+  file: group={{ item.group }} owner={{ item.owner }} path={{ item.path }} state=directory
+  with_items: nfs_shares
+  tags: nfs-server
+
+- name: Populate /etc/exports
+  sudo: true
+  template: dest=/etc/exports src=exports.j2
+  notify:
+    - Reload NFS service
+  tags: nfs-server
+
+- name: Enable & start NFS services
+  sudo: true
+  service: enabled=true name={{ item }} state=started
+  with_items:
+    - rpcbind
+    - nfs-server
+  tags: nfs-server
