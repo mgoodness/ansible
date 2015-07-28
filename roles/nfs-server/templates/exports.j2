@@ -1,5 +1,7 @@
+#jinja2:trim_blocks: False
+
 # {{ ansible_managed }}
 
 {% for share in nfs_shares %}
-{{ share.path }} {{ ansible_ssh_host }}({{ share.options }})
+{{ share.path }}{% for host in share.hosts %} {{ host.address }}({{ host.options }}){% endfor %}
 {% endfor %}

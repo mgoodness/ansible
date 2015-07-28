@@ -65,8 +65,13 @@ nfs_shares:
   - path: /srv/ovirt_data
     group: 36
     owner: 36
-    options: 'rw,anonuid=36,anongid=36,all_squash'
+    hosts:
+      - address: '10.10.20.0/24'
+        options: 'rw,anonuid=36,anongid=36,all_squash'
   - path: /srv/ovirt_engine
     group: 36
     owner: 36
-    options: 'rw,anonuid=36,anongid=36,all_squash'
+    hosts:
+      - address: '10.10.20.0/24'
+        options: 'rw,anonuid=36,anongid=36,all_squash'
+
