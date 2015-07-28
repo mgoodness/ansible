@@ -1,12 +1,12 @@
 ---
-# handlers file for samba_server
+# handlers file for samba-server
 
 - name: Restart Samba service
   sudo: true
   service: name=smb state=restarted
-  tags: samba_server
+  tags: samba-server
 
 - name: Restart NetBIOS service
   sudo: true
   service: name=nmb state=restarted
-  tags: samba_server
+  tags: samba-server

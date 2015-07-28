@@ -1,5 +1,5 @@
 ---
-# tasks file for samba_server
+# tasks file for samba-server
 
 - name: Install Samba packages
   sudo: true
@@ -7,12 +7,12 @@
   with_items:
     - samba
     - libsemanage-python
-  tags: samba_server
+  tags: samba-server
 
 - name: Set Samba SELinux boolean
   sudo: true
   seboolean: name=samba_export_all_rw persistent=true state=true
-  tags: samba_server
+  tags: samba-server
 
 - name: Create shared directories
   sudo: true
@@ -25,7 +25,7 @@
     state=directory
   when: samba_shares is defined
   with_items: samba_shares
-  tags: samba_server
+  tags: samba-server
 
 - name: Configure Samba
   sudo: true
@@ -33,19 +33,19 @@
   notify:
     - Restart Samba service
     - Restart NetBIOS service
-  tags: samba_server
+  tags: samba-server
 
 - name: Start Samba service
   sudo: true
   service: enabled=true name=smb state=started
-  tags: samba_server
+  tags: samba-server
 
 - name: Start NetBIOS service
   sudo: true
   service: enabled=true name=nmb state=started
-  tags: samba_server
+  tags: samba-server
 
 - name: Configure firewalld for Samba
   sudo: true
   firewalld: permanent=true service=samba state=enabled
-  tags: samba_server
+  tags: samba-server

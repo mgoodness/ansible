@@ -1,5 +1,5 @@
 ---
-# defaults file for samba_server
+# defaults file for samba-server
 
 samba_workgroup: 'WORKGROUP'
 samba_server_string: ''
