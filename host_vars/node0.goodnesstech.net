@@ -74,4 +74,3 @@ nfs_shares:
     hosts:
       - address: '10.10.20.0/24'
         options: 'rw,anonuid=36,anongid=36,all_squash'
-
