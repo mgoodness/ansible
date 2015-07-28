@@ -1,0 +1,5 @@
+# file: group_vars/all/public
+
+ovirt_engine:
+  hostname: 'ovirt-engine'
+  address: '10.10.20.100'

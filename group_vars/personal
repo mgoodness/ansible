@@ -1,3 +1,5 @@
+# file: group_vars/personal
+
 users:
   - name: mgoodness
     full_name: 'Michael Goodness'

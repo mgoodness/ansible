@@ -4,17 +4,18 @@
 - name: Install oVirt repository
   sudo: true
   yum: name={{ ovirt_repo }} state=present
-  tags: ovirt
+  tags: ovirt-engine
 
 - name: Install hosted oVirt engine setup
   sudo: true
   yum: name=ovirt-hosted-engine-setup state=present
-  tags: ovirt
+  tags: ovirt-engine
 
 - name: Create ovirt-engine entry in /etc/hosts
   sudo: true
   lineinfile:
     dest=/etc/hosts
-    line="{{ hostvars.{{ ovirt-engine-fqdn }}.ansible_ssh_host }} {{ ovirt-engine-fqdn }}"
+    line="{{ ovirt_engine.address }} {{ ovirt_engine.hostname}}.{{ ansible_domain }}"
+    regexp='.*{{ ovirt_engine.hostname }}\.{{ ansible_domain }}$'
     state=present
-  tags: ovirt
+  tags: ovirt-engine
