@@ -1,7 +1,7 @@
 ---
 # tasks file for fish
 
-- name: Add fish repo
+- name: Add fish repository
   sudo: true
   get_url: >
     url={{ fish_centos_repo }}

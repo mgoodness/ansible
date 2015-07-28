@@ -3,4 +3,7 @@
 
 - hosts: ovirt_hosts
   roles:
+    - ssd
     - common
+    - role: ovirt-engine
+      run_once: true

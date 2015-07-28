@@ -1,0 +1,20 @@
+---
+# tasks file for ovirt-engine
+
+- name: Install oVirt repository
+  sudo: true
+  yum: name={{ ovirt_repo }} state=present
+  tags: ovirt
+
+- name: Install hosted oVirt engine setup
+  sudo: true
+  yum: name=ovirt-hosted-engine-setup state=present
+  tags: ovirt
+
+- name: Create ovirt-engine entry in /etc/hosts
+  sudo: true
+  lineinfile:
+    dest=/etc/hosts
+    line="{{ hostvars.{{ ovirt-engine-fqdn }}.ansible_ssh_host }} {{ ovirt-engine-fqdn }}"
+    state=present
+  tags: ovirt

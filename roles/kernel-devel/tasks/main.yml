@@ -1,7 +1,7 @@
 ---
 # tasks file for kernel-devel
 
-- name: install kernel development packages
+- name: Install kernel development packages
   sudo: true
   yum: pkg={{ item }} state=present
   with_items:

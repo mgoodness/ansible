@@ -1,7 +1,7 @@
 ---
 # tasks file for php
 
-- name: install PHP packages
+- name: Install PHP packages
   sudo: true
   yum: pkg={{ item }} state=present
   with_items:
@@ -10,19 +10,19 @@
     - npm
   tags: php
 
-- name: configure npm global location
+- name: Configure NPM global location
   shell: npm config set prefix {{ homedir }}/.npm
   tags: php
 
-- name: install npm Less package
+- name: Install NPM Less package
   npm: name=less state=present global=true
   tags: php
 
-- name: download PhpStorm
+- name: Download PhpStorm
   get_url: url={{ phpstorm_url }} dest=/tmp{{ phpstorm_archive }}
   tags: php
 
-- name: install PhpStorm
+- name: Install PhpStorm
   sudo: true
   unarchive: src=/tmp/{{ phpstorm_archive }} dest=/opt copy=no
   tags: php

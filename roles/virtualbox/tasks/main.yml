@@ -1,7 +1,7 @@
 ---
 # tasks file for virtualbox
 
-- name: Add VirtualBox repo
+- name: Add VirtualBox repository
   sudo: true
   get_url: >
     url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo

@@ -1,13 +1,13 @@
 ---
 # tasks file for xorg
 
-- name: get modeline
+- name: Get modeline
   command: cvt -r {{ h_res }} {{ v_res }} {{ refresh }}
   register: modeline
   changed_when: false
   tags: xorg
 
-- name: create xorg.conf with modeline
+- name: Create xorg.conf with modeline
   sudo: true
   template: >
     src=xorg.conf.j2

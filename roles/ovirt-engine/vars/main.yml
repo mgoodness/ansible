@@ -1,0 +1,4 @@
+---
+# vars file for ovirt-engine
+
+ovirt_release: 35

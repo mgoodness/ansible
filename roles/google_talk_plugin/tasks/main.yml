@@ -8,7 +8,7 @@
     state=present
   tags: google_talk_plugin
 
-- name: Add Google Talk plugin repo
+- name: Add Google Talk plugin repository
   sudo: true
   copy:
     src=google-talkplugin.repo

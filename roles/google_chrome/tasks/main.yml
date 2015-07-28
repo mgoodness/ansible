@@ -8,7 +8,7 @@
     state=present
   tags: google_chrome
 
-- name: Add Google Chrome repo
+- name: Add Google Chrome repository
   sudo: true
   copy:
     src=google-chrome.repo

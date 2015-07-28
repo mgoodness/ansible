@@ -1,12 +1,12 @@
 ---
 # tasks file for nvidia_driver
 
-- name: install nVidia driver
+- name: Install nVidia driver
   sudo: true
   yum: name=kmod-nvidia-340xx state=present
   tags: nvidia_driver
 
-- name: disable nVidia PowerMizer
+- name: Disable nVidia PowerMizer
   sudo: true
   copy: >
     src=50-nvidia-powermizer.conf

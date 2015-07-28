@@ -1,18 +1,18 @@
 ---
 # tasks file for jre
 
-- name: download JRE
+- name: Download JRE
   command: >
   	"wget -q -O /tmp/{{ jre_rpm }} --no-check-certificate --no-cookies \
   	--header 'Cookie: oraclelicense=accept-securebackup-cookie' {{ jre_url }}"
   	creates=/tmp/{{ jre_rpm }}
   tags: jre
 
-- name: install JRE
+- name: Install JRE
   yum: pkg=/tmp/{{ jre_rpm }} state=present
   tags: jre
 
-- name: add Java alternatives
+- name: Add Java alternatives
   command: >
   	"alternatives --install {{ item.link }} {{ item.name }} {{ item.path }} 200000"
   with_items:
