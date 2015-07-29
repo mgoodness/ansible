@@ -2,3 +2,4 @@
 # vars file for ovirt-engine
 
 ovirt_release: 35
+ovirt_centos_iso: CentOS-7-x86_64-Minimal-1503-01.iso

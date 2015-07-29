@@ -19,3 +19,8 @@
     regexp='.*{{ ovirt_engine.hostname }}\.{{ ansible_domain }}$'
     state=present
   tags: ovirt-engine
+
+- name: Download CentOS ISO
+  sudo: true
+  get_url: dest=/tmp/{{ ovirt_centos_iso }} group=36 owner=36 url={{ ovirt_centos_mirror }}
+  tags: ovirt-engine

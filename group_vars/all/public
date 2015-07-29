@@ -1,3 +1,4 @@
+---
 # file: group_vars/all/public
 
 ovirt_engine:
