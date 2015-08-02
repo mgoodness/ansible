@@ -17,9 +17,10 @@
   sudo: true
   lineinfile:
     dest=/etc/hosts
-    line="{{ ovirt_engine.address }} {{ ovirt_engine.hostname}}.{{ ansible_domain }}"
-    regexp='.*{{ ovirt_engine.hostname }}\.{{ ansible_domain }}$'
+    line="{{ hostvars[item].ansible_ssh_host }} {{ hostvars[item].ansible_fqdn }}"
+    regexp='.*{{ hostvars[item].ansible_fqdn }}$'
     state=present
+  with_items: groups['ovirt_engine']
   tags: ovirt-host
 
 # Necessary for hosted-engine appliance?

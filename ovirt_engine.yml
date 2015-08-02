@@ -1,0 +1,8 @@
+---
+# file: ovirt_engine.yml
+
+- hosts: ovirt_engine
+  roles:
+    - users
+    - fish
+    - common
