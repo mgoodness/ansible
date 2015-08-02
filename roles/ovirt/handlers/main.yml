@@ -1,2 +1,7 @@
 ---
 # handlers file for ovirt
+
+- name: Restart firewalld
+  sudo: true
+  service: state=restarted
+  tags: ovirt

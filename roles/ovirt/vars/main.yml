@@ -2,7 +2,6 @@
 # vars file for ovirt
 
 ovirt_release: 35
-ovirt_centos_iso: CentOS-7-x86_64-Minimal-1503-01.iso
 ovirt_ports:
   - 54321/tcp
   - 16514/tcp

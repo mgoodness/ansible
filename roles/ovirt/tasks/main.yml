@@ -6,11 +6,6 @@
   yum: name={{ ovirt_repo }} state=present
   tags: ovirt
 
-- name: Install hosted oVirt engine setup
-  sudo: true
-  yum: name=ovirt-hosted-engine-setup state=present
-  tags: ovirt
-
 - name: Disable NetworkManager service
   sudo: true
   service: enabled=false name=NetworkManager state=stopped
@@ -27,10 +22,8 @@
   sudo: true
   firewalld: permanent=true port={{ item }} state=enabled
   with_items: ovirt_ports
+  notify: Restart firewalld
   tags: ovirt
-
-#- name: Deploy hosted engine
-#  cmd: hosted-engine --deploy (with answer file)
 
 - name: Create ovirt-engine entry in /etc/hosts
   sudo: true
@@ -41,11 +34,15 @@
     state=present
   tags: ovirt
 
-# on hosted engine after OS installation:
-# yum -y update
-# add nfs server to /etc/hosts
-# install epel-release
-# install oVirt repository
-# install common
-# install ovirt-engine ovirt-guest-agent-common
-# run engine-setup (with answer file)
+# Necessary for hosted-engine appliance?
+- name: Install hosted oVirt engine setup
+  sudo: true
+  yum: name=ovirt-hosted-engine-setup state=present
+  tags: ovirt
+
+#- name: Deploy hosted-engine appliance
+#  run_once: true
+#  delegate_to: node0.goodnesstech.net
+
+#- name: Deploy additional node
+#  cmd: hosted-engine --deploy --config-append=hosted_engine-answers.conf

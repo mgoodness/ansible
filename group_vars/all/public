@@ -4,3 +4,7 @@
 ovirt_engine:
   hostname: 'ovirt-engine'
   address: '10.10.20.100'
+
+ovirt_storage_host:
+  hostname: 'node0.goodnesstech.net'
+  path: '/srv/ovirt_engine'
