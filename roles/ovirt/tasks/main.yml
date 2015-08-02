@@ -1,0 +1,51 @@
+---
+# tasks file for ovirt
+
+- name: Install oVirt repository
+  sudo: true
+  yum: name={{ ovirt_repo }} state=present
+  tags: ovirt
+
+- name: Install hosted oVirt engine setup
+  sudo: true
+  yum: name=ovirt-hosted-engine-setup state=present
+  tags: ovirt
+
+- name: Disable NetworkManager service
+  sudo: true
+  service: enabled=false name=NetworkManager state=stopped
+  tags: ovirt
+
+- name: Enable network service
+  sudo: true
+  service: enabled=true name=network state=started
+  tags: ovirt
+
+#- name: Create ovirtmgmt bonded interface for VDSM
+
+- name: Open ports in firewalld
+  sudo: true
+  firewalld: permanent=true port={{ item }} state=enabled
+  with_items: ovirt_ports
+  tags: ovirt
+
+#- name: Deploy hosted engine
+#  cmd: hosted-engine --deploy (with answer file)
+
+- name: Create ovirt-engine entry in /etc/hosts
+  sudo: true
+  lineinfile:
+    dest=/etc/hosts
+    line="{{ ovirt_engine.address }} {{ ovirt_engine.hostname}}.{{ ansible_domain }}"
+    regexp='.*{{ ovirt_engine.hostname }}\.{{ ansible_domain }}$'
+    state=present
+  tags: ovirt
+
+# on hosted engine after OS installation:
+# yum -y update
+# add nfs server to /etc/hosts
+# install epel-release
+# install oVirt repository
+# install common
+# install ovirt-engine ovirt-guest-agent-common
+# run engine-setup (with answer file)

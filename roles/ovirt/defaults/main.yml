@@ -1,5 +1,5 @@
 ---
-# defaults file for ovirt-engine
+# defaults file for ovirt
 
 ovirt_repo: "http://resources.ovirt.org/pub/yum-repo/ovirt-release{{ ovirt_release }}.rpm"
 ovirt_centos_mirror: "http://distro.ibiblio.org/centos/7/isos/x86_64/{{ ovirt_centos_iso }}"
