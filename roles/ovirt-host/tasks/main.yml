@@ -17,8 +17,8 @@
   sudo: true
   lineinfile:
     dest=/etc/hosts
-    line="{{ hostvars[item].ansible_ssh_host }} {{ hostvars[item].ansible_fqdn }}"
-    regexp='.*{{ hostvars[item].ansible_fqdn }}$'
+    line="{{ hostvars[item].ansible_ssh_host }} {{ hostvars[item].inventory_hostname }}"
+    regexp='.*{{ hostvars[item].inventory_hostname }}$'
     state=present
   with_items: groups['ovirt_engine']
   tags: ovirt-host
