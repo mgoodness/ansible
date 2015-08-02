@@ -3,6 +3,8 @@
 
 - hosts: ovirt_hosts
   roles:
+    - users
+    - fish
     - ssd
     - common
     - ovirt
