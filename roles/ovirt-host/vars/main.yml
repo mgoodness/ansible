@@ -1,8 +1,8 @@
 ---
-# vars file for ovirt
+# vars file for ovirt-host
 
-ovirt_release: 35
-ovirt_ports:
+ovirt_host_release: 35
+ovirt_host_ports:
   - 54321/tcp
   - 16514/tcp
   - 5900/tcp

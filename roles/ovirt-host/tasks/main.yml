@@ -1,17 +1,17 @@
 ---
-# tasks file for ovirt
+# tasks file for ovirt-host
 
 - name: Install oVirt repository
   sudo: true
-  yum: name={{ ovirt_repo }} state=present
-  tags: ovirt
+  yum: name={{ ovirt_host_repo }} state=present
+  tags: ovirt-host
 
 - name: Open ports in firewalld
   sudo: true
   firewalld: permanent=true port={{ item }} state=enabled
-  with_items: ovirt_ports
+  with_items: ovirt_host_ports
   notify: Restart firewalld
-  tags: ovirt
+  tags: ovirt-host
 
 - name: Create ovirt-engine entry in /etc/hosts
   sudo: true
@@ -20,13 +20,13 @@
     line="{{ ovirt_engine.address }} {{ ovirt_engine.hostname}}.{{ ansible_domain }}"
     regexp='.*{{ ovirt_engine.hostname }}\.{{ ansible_domain }}$'
     state=present
-  tags: ovirt
+  tags: ovirt-host
 
 # Necessary for hosted-engine appliance?
 - name: Install hosted oVirt engine setup
   sudo: true
   yum: name=ovirt-hosted-engine-setup state=present
-  tags: ovirt
+  tags: ovirt-host
 
 #- name: Deploy hosted-engine appliance
 #  run_once: true
