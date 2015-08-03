@@ -1,5 +1,5 @@
 ---
-# file: host_vars/node0.goodnesstech.net
+# file: host_vars/node0.home.goodnesstech.net
 
 ansible_ssh_host: 10.10.20.200
 
@@ -29,20 +29,6 @@ lvm_volume_groups:
       - /dev/md0
 
 lvm_logical_volumes:
-  - name: ovirt_data
-    vg: raid10
-    size: 1T
-    filesystem: xfs
-    mount_point: /srv/ovirt_data
-    mount_options: defaults
-    mount_passno: 0
-  - name: ovirt_engine
-    vg: raid10
-    size: 64G
-    filesystem: xfs
-    mount_point: /srv/ovirt_engine
-    mount_options: defaults
-    mount_passno: 0
   - name: shared_data
     vg: raid10
     size: 2T
@@ -60,17 +46,3 @@ samba_shares:
     force_group: 'users'
     directory_mask: '0775'
     create_mask: '0764'
-
-nfs_shares:
-  - path: /srv/ovirt_data
-    group: 36
-    owner: 36
-    hosts:
-      - address: '10.10.20.0/24'
-        options: 'rw,anonuid=36,anongid=36,all_squash'
-  - path: /srv/ovirt_engine
-    group: 36
-    owner: 36
-    hosts:
-      - address: '10.10.20.0/24'
-        options: 'rw,anonuid=36,anongid=36,all_squash'

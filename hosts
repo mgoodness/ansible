@@ -11,12 +11,5 @@
 [laptops]
 wintermute.goodnesstech.net
 
-[ovirt_hosts]
-node0.goodnesstech.net
-
-[ovirt_engine]
-ovirt-engine.goodnesstech.net
-
 [storage_hosts]
-node0.goodnesstech.net
-
+node0.home.goodnesstech.net

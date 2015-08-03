@@ -1,8 +1,0 @@
----
-# file: host_vars/ovirt-engine.goodnesstech.net
-
-ansible_ssh_host: 10.10.20.100
-
-ovirt_engine_storage_host:
-  hostname: 'node0.goodnesstech.net'
-  path: '/srv/ovirt_engine'
