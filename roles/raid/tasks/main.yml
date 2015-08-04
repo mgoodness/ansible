@@ -15,6 +15,15 @@
   with_items: raid_devices
   tags: raid
 
+- name: Assemble existing RAID devices
+  sudo: true
+  command: mdadm --assemble {{ item.0.device }} --force {{ item.0.components | join(" ") }}
+  when: item.1.stderr == "mdadm: cannot open /dev/md0: No such file or directory"
+  with_items:
+    - raid_devices
+    - mdadm_status.results
+  tags: raid
+
 - name: Initialize RAID devices
   sudo: true
   command: >
