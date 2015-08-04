@@ -4,3 +4,4 @@
 - include: laptop.yml
 - include: storage_host.yml
 - include: ovirt_host.yml
+- include: docker_host.yml

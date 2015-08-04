@@ -1,0 +1,6 @@
+---
+# file: docker_host.yml
+
+- hosts: docker_hosts
+  roles:
+    - docker

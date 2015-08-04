@@ -1,12 +1,24 @@
 ---
 # tasks file for docker
 
-- name: Install Docker
+- name: Add Docker repository
   sudo: true
-  dnf: name=docker state=present
+  file: path=/etc/yum.repos.d/docker.repo src=docker.repo state=present
   tags: docker
 
-- name: Set SELinux to allow connections
+- name: Install Docker
   sudo: true
-  seboolean: name=docker_connect_any persistent=true state=on
+  dnf: name=docker-engine state=present
+  when: ansible_pkg_mgr == "dnf"
+  tags: docker
+
+- name: Install Docker
+  sudo: true
+  yum: name=docker-engine state=present
+  when: ansible_pkg_mgr == "yum"
+  tags: docker
+
+- name: Start Docker daemon
+  sudo: true
+  service: enabled=true name=docker state=started
   tags: docker
