@@ -18,10 +18,10 @@ raid_devices:
   - device: /dev/md0
     level: 10
     components:
+      - /dev/sdb
       - /dev/sdc
       - /dev/sdd
       - /dev/sde
-      - /dev/sdf
 
 lvm_volume_groups:
   - name: raid10
