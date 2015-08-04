@@ -5,3 +5,4 @@ common_packages:
     - vim
     - screen
     - mailx
+    - unzip
