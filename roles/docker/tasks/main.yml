@@ -1,20 +1,15 @@
 ---
 # tasks file for docker
 
-- name: Add Docker repository
-  sudo: true
-  copy: dest=/etc/yum.repos.d/docker.repo src=docker.repo
-  tags: docker
-
 - name: Install Docker
   sudo: true
-  dnf: name=docker-engine state=present
+  dnf: name=docker state=present
   when: ansible_pkg_mgr == "dnf"
   tags: docker
 
 - name: Install Docker
   sudo: true
-  yum: name=docker-engine state=present
+  yum: name=docker state=present
   when: ansible_pkg_mgr == "yum"
   tags: docker
 
