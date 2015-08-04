@@ -49,5 +49,5 @@
   sudo: true
   firewalld: permanent=true service=samba state=enabled
   notify:
-    - Reload firewalld
+    - Restart firewalld
   tags: samba-server
