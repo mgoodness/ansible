@@ -3,7 +3,7 @@
 
 - name: Add Docker repository
   sudo: true
-  file: path=/etc/yum.repos.d/docker.repo src=docker.repo state=file
+  copy: dest=/etc/yum.repos.d/docker.repo src=docker.repo
   tags: docker
 
 - name: Install Docker
