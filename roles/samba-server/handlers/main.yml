@@ -10,3 +10,8 @@
   sudo: true
   service: name=nmb state=restarted
   tags: samba-server
+
+- name: Reload firewalld
+  sudo: true
+  service: state=reloaded
+  tags: samba-server

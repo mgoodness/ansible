@@ -48,4 +48,6 @@
 - name: Configure firewalld for Samba
   sudo: true
   firewalld: permanent=true service=samba state=enabled
+  notify:
+    - Reload firewalld
   tags: samba-server
