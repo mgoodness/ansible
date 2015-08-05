@@ -13,7 +13,7 @@
 - name: Install Samba packages
   sudo: true
   yum: name={{ item }} state=present
-  when: ansible_pkg_mgr == "yum" or not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   with_items:
     - samba
     - libsemanage-python

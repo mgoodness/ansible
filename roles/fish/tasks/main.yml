@@ -21,7 +21,7 @@
 - name: Install fish
   sudo: true
   yum: name=fish state=present
-  when: ansible_pkg_mgr == "yum" or not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   tags: fish
 
 - name: Set user's shell to fish
