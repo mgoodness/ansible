@@ -3,9 +3,6 @@
 
 ansible_ssh_host: 10.10.20.200
 
-# this is temporary, pending resolution of https://github.com/ansible/ansible-modules-core/issues/1797
-ansible_pkg_mgr: dnf
-
 network_interfaces:
   - name: enp8s0
     address: 10.10.30.200/24

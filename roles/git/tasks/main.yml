@@ -4,11 +4,11 @@
 - name: Install Git
   sudo: true
   dnf: name=git state=present
-  when: ansible_pkg_mgr == "dnf"
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   tags: git
 
 - name: Install Git
   sudo: true
   yum: name=git state=present
-  when: ansible_pkg_mgr == "yum"
+  when: ansible_pkg_mgr == "dnf" or not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   tags: git
