@@ -13,5 +13,5 @@
 
 - name: Restart firewalld
   sudo: true
-  service: state=restarted
+  service: name=firewalld state=restarted
   tags: samba-server
