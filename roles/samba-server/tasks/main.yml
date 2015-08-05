@@ -3,7 +3,17 @@
 
 - name: Install Samba packages
   sudo: true
+  dnf: name={{ item }} state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  with_items:
+    - samba
+    - libsemanage-python
+  tags: samba-server
+
+- name: Install Samba packages
+  sudo: true
   yum: name={{ item }} state=present
+  when: ansible_pkg_mgr == "yum" or not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   with_items:
     - samba
     - libsemanage-python
