@@ -3,7 +3,14 @@
 
 - name: Install RAID package
   sudo: true
+  dnf: name=mdadm state=present
+  when: ansible_pkg_mgr == "dnf"
+  tags: raid
+
+- name: Install RAID package
+  sudo: true
   yum: name=mdadm state=present
+  when: ansible_pkg_mgr == "yum"
   tags: raid
 
 - name: Check existing RAID devices
