@@ -25,8 +25,9 @@
 - name: Assemble existing RAID devices
   sudo: true
   command: mdadm --assemble {{ item.0.device }} --force {{ item.0.components | join(" ") }}
-  when: item.1.stderr == "mdadm':' cannot open {{ item.0.device }}':' No such file or directory"
-  with_items:
+  register: mdadm_assembled
+  when: item.1.stderr.find("cannot open {{ item.0.device }}") != -1
+  with_together:
     - raid_devices
     - mdadm_status.results
   tags: raid
@@ -36,10 +37,11 @@
   command: >
     mdadm -v --create {{ item.0.device }} --level={{ item.0.level }} --raid-devices={{ item.0.components | length }}
     {{ item.0.components | join(" ") }}
-  when: item.1.rc != 0
+  when: item.1.rc != 0 and item.2.rc != 0
   with_together:
     - raid_devices
     - mdadm_status.results
+    - mdadm_assembled.results
   tags: raid
 
 - name: Scan RAID devices
