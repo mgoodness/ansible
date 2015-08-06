@@ -21,4 +21,5 @@
 - name: Install Google Chrome (stable)
   sudo: true
   dnf: name=google-chrome-stable state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   tags: google_chrome

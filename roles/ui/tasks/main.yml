@@ -4,6 +4,7 @@
 - name: Install UI packages
   sudo: true
   dnf: name={{ item }} state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   with_items:
     - gnome-tweak-tool
     - dconf-editor

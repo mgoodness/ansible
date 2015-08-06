@@ -4,4 +4,5 @@
 - name: Install Vagrant
   sudo: true
   dnf: name=vagrant state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
   tags: vagrant
