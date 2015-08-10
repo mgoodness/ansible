@@ -1,0 +1,4 @@
+---
+# defaults file for atom
+
+atom_url: https://github.com/atom/atom/releases/download/{{ atom_version }}/atom.x86_64.rpm
