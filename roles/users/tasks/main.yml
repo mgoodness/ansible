@@ -22,10 +22,14 @@
   user:
     append=true
     comment="{{ item.full_name }}"
+    generate_ssh_key=true
     group={{ item.primary_group }}
     groups={{ item.groups | join(',', attribute='name') }}
     home={{ item.home }}
     name={{ item.name }}
+    ssh_key_bits=4096
+    ssh_key_comment={{ item.name }}@{{ ansible_fqdn }}
+    ssh_key_passphrase={{ item.password }}
     state=present
     update_password=on_create
   when: users is defined
