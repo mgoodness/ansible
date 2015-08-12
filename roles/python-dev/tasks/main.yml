@@ -1,0 +1,24 @@
+---
+# tasks file for python-dev
+
+- name: Install Python packages
+  sudo: true
+  dnf: name=python-pip state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: python-dev
+
+- name: Install Python packages
+  sudo: true
+  yum: name=python-pip state=present
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: python-dev
+
+- name: Install Python dependencies
+  sudo: true
+  pip: name={{ item }} state=present
+  with_items:
+    - sqlparse
+    - autopep8
+    - flake8
+    - flake8-docstrings
+  tags: python-dev
