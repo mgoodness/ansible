@@ -1,4 +1,0 @@
----
-# defaults file for php
-
-homedir: /home/{{ ansible_user_id }}

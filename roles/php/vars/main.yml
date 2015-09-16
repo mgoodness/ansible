@@ -1,5 +1,0 @@
----
-# vars file for php
-
-phpstorm_archive: PhpStorm-8.0.3.tar.gz
-phpstorm_url: "https://download.jetbrains.com/webide/{{ phpstorm_archive }}"

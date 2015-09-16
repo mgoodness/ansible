@@ -1,8 +1,0 @@
----
-# defaults file for xorg
-
-h_res: 1920
-v_res: 1080
-refresh: 60
-driver: "intel"
-bus_id: "PCI:0:2:0"

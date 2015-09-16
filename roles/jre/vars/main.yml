@@ -1,5 +1,0 @@
----
-# vars file for jre
-
-jre_rpm: jre-8u40-linux-x64.rpm
-jre_url: "http://download.oracle.com/otn-pub/java/jdk/8u40-b26/{{ jre_rpm }}"

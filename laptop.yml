@@ -11,9 +11,10 @@
     - atom
     - sublime_text
     - google_chrome
-    - python-dev
+    - python-devel
     - google_talk_plugin
     - fish
     - vlc
     - vagrant
+    - docker
     - ui

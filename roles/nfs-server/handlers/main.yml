@@ -1,7 +1,0 @@
----
-# handlers file for nfs-server
-
-- name: Reload NFS service
-  sudo: true
-  service: name=nfs-server state=reloaded
-  tags: nfs-server

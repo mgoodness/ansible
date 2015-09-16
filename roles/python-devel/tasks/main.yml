@@ -1,0 +1,35 @@
+---
+# tasks file for python-devel
+
+- name: Install Python packages
+  sudo: true
+  dnf: name={{ item }} state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  with_items:
+    - gcc
+    - python-pip
+    - python-virtualenv
+    - python-devel
+  tags: python-devel
+
+- name: Install Python packages
+  sudo: true
+  yum: name={{ item }} state=present
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  with_items:
+    - gcc
+    - python-pip
+    - python-virtualenv
+    - python-devel
+  tags: python-devel
+
+- name: Install Python dependencies
+  sudo: true
+  pip: name={{ item }} state=present
+  with_items:
+    - sqlparse
+    - autopep8
+    - flake8
+    - flake8-docstrings
+    - virtualfish
+  tags: python-devel

@@ -10,10 +10,3 @@
 
 [laptops]
 wintermute.goodnesstech.net
-
-[storage_hosts]
-node0.home.goodnesstech.net
-
-[docker_hosts]
-wintermute.goodnesstech.net
-node0.home.goodnesstech.net
