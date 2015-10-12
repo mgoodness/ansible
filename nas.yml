@@ -1,0 +1,11 @@
+---
+# file: nas.yml
+
+- hosts: nas
+  roles:
+    - users
+    - git
+    - ssd
+    - common
+    - fish
+    - docker
