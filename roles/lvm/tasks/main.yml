@@ -1,0 +1,42 @@
+---
+# tasks file for lvm
+
+- name: Create volume groups
+  sudo: true
+  lvg: pvs={{ item.devices | join(',') }} vg={{ item.name }} state=present
+  with_items: lvm_volume_groups
+  tags: lvm
+
+- name: Create logical volumes
+  sudo: true
+  lvol: lv={{ item.name }} size={{ item.size }} vg={{ item.vg }} state=present
+  with_items: lvm_logical_volumes
+  tags: lvm
+
+- name: Create filesystems
+  sudo: true
+  filesystem: dev=/dev/mapper/{{ item.vg }}-{{ item.name }} fstype={{ item.filesystem }}  
+  with_items: lvm_logical_volumes
+  tags: lvm
+
+- name: Get UUIDs
+  sudo: true
+  command: blkid /dev/mapper/{{ item.vg }}-{{ item.name }} -s UUID -o value
+  register: blkids
+  changed_when: false
+  with_items: lvm_logical_volumes
+  tags: lvm
+
+- name: Mount filesystems
+  sudo: true
+  mount:
+    fstype={{ item.0.filesystem }}
+    name={{ item.0.mount_point }}
+    opts={{ item.0.mount_options }}
+    passno={{ item.0.mount_passno }}
+    src='UUID={{ item.1.stdout }}'
+    state=mounted
+  with_together:
+    - lvm_logical_volumes
+    - blkids.results
+  tags: lvm

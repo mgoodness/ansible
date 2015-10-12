@@ -1,0 +1,13 @@
+---
+# file: storage_host.yml
+
+- hosts: storage_hosts
+  roles:
+    - users
+    - git
+    - ssd
+    - common
+    - fish
+    - raid
+    - lvm
+    - samba-server

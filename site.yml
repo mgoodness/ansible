@@ -2,4 +2,4 @@
 # file: site.yml
 
 - include: laptop.yml
-- include: nas.yml
+- include: storage_host.yml

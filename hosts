@@ -9,7 +9,7 @@
 #   - A hostname/ip can be a member of multiple groups
 
 [laptops]
-wintermute.goodnesstech.net
+wintermute.opsgoodness.net
 
-[nas]
-aleph.goodnesstech.net
+[storage_hosts]
+aleph.opsgoodness.net

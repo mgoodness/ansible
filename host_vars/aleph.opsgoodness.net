@@ -1,0 +1,48 @@
+---
+# file: host_vars/aleph.opsgoodness.net
+
+ansible_ssh_host: 192.168.1.102
+
+network_interfaces:
+  - name: enp7s0
+    address: 192.168.1.102/24
+    gateway: 192.168.1.254
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+  - name: enp8s0
+    address: 192.168.1.103/24
+
+raid_alerts_email: mgoodness@gmail.com
+raid_devices:
+  - device: /dev/md0
+    level: 10
+    components:
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+
+lvm_volume_groups:
+  - name: raid10
+    devices:
+      - /dev/md0
+
+lvm_logical_volumes:
+  - name: shared_data
+    vg: raid10
+    size: 4T
+    filesystem: xfs
+    mount_point: /srv/shared_data
+    mount_options: defaults
+    mount_passno: 0
+
+samba_netbios_name: STORAGE
+samba_workgroup: OPSGOODNESS
+samba_shares:
+  - name: shared
+    path: /srv/shared_data
+    public: 'yes'
+    force_group: 'users'
+    directory_mask: '0775'
+    create_mask: '0764'

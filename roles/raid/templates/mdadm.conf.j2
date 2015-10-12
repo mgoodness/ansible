@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+
+# automatically tag new arrays as belonging to the local system
+HOMEHOST <system>
+
+# where to send monitoring daemon alerts
+MAILADDR {{ raid_alerts_email }}
+
+# from address for monitoring daemon alerts
+MAILFROM {{ raid_alerts_from }}
+
+# definitions of existing MD arrays
+{{ mdadm_scan.stdout }}
