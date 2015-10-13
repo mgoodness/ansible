@@ -10,8 +10,6 @@ network_interfaces:
     dns:
       - 8.8.8.8
       - 8.8.4.4
-  - name: enp8s0
-    address: 192.168.1.103/24
 
 raid_alerts_email: mgoodness@gmail.com
 raid_devices:
@@ -37,7 +35,7 @@ lvm_logical_volumes:
     mount_options: defaults
     mount_passno: 0
 
-samba_netbios_name: STORAGE
+samba_netbios_name: ALEPH
 samba_workgroup: OPSGOODNESS
 samba_shares:
   - name: shared

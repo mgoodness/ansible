@@ -26,6 +26,7 @@
   sudo: true
   command: mdadm --assemble {{ item.0.device }} --force {{ item.0.components | join(" ") }}
   register: mdadm_assembled
+  failed_when: false
   when: item.1.stderr.find("cannot open {{ item.0.device }}") != -1
   with_together:
     - raid_devices
