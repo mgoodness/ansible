@@ -1,0 +1,66 @@
+tasks:
+  # downloading task
+  download-rss:
+    rss:
+      url: {{ flexget_rss_feed }}
+      all_entries: no
+    all_series: yes
+    transmission:
+      host: localhost
+      port: 9091
+
+  # sorting task
+  sort-files:
+    disable:
+      - retry_failed
+    filesystem:
+      path: {{ flexget_download_dir }}
+      regexp: '.*\.(avi|mkv|mp4)$'
+      recursive: yes
+    accept_all: yes
+    seen: local
+    all_series:
+      # required by TVDB
+      parse_only: yes
+    # manual series
+    series:
+      - Another Period:
+          identified_by: ep
+          name_regexp: ^another.period
+          ep_regexp: '(\d)(\d{2})'
+      - Arrow:
+          identified_by: ep
+          name_regexp: ^arrow
+          ep_regexp: '(\d)(\d{2})'
+      - Gotham:
+            identified_by: ep
+            name_regexp: ^gotham
+            ep_regexp: '(\d)(\d{2})'
+      - "Marvel's Agents of S.H.I.E.L.D.":
+          identified_by: ep
+          name_regexp: ^Marvels.Agents.of.S.H.I.E.L.D.
+      - The Flash (2014):
+          identified_by: ep
+          name_regexp: ^the.flash.2014
+          ep_regexp: '(\d)(\d{2})'
+    thetvdb_lookup: yes
+    # ignore samples
+    regexp:
+      reject:
+        - sample
+    require_field:
+      - series_name
+      - series_id
+      - tvdb_ep_name
+    copy:
+      to: {{ flexget_copy_dir }}/{{ '{{ series_name }}' }}
+      filename: '{{ '{{ series_name }} - {{ series_id }} - {{ tvdb_ep_name }}{{ location | pathext }}' }}'
+schedules:
+  # check RSS feed once an hour
+  - tasks: download-rss
+    interval:
+      hours: 1
+  # sort files every 30 minutes
+  - tasks: sort-files
+    interval:
+      minutes: 30

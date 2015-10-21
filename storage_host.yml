@@ -11,3 +11,6 @@
     - raid
     - lvm
     - samba-server
+    - openvpn-pia
+    - transmission
+    - flexget-showrss

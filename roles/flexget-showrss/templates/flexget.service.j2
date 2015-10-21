@@ -1,0 +1,16 @@
+[Unit]
+Description=Flexget Daemon
+After=network.target
+
+[Service]
+Type=simple
+User={{ flexget_user }}
+Group={{ flexget_group }}
+UMask=000
+WorkingDirectory={{ flexget_working_dir }}
+ExecStart=/usr/bin/flexget daemon start
+ExecStop=/usr/bin/flexget daemon stop
+ExecReload=/usr/bin/flexget daemon reload
+
+[Install]
+WantedBy=multi-user.target

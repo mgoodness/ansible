@@ -1,0 +1,4 @@
+---
+# defaults file for openvpn-pia
+
+openvpn_pia_config: ''

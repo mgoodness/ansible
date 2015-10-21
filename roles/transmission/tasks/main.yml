@@ -1,0 +1,46 @@
+---
+# tasks file for transmission
+
+- name: Install Transmission
+  sudo: true
+  dnf: name=transmission-daemon state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: transmission
+
+- name: Install Transmission
+  sudo: true
+  yum: name=transmission-daemon state=present
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: transmission
+
+- name: Create Transmission configuration directory
+  sudo: true
+  file:
+    path={{ transmission_config_dir }}
+    state=directory
+    mode=0755
+    owner=transmission
+    group=transmission
+  tags: transmission
+
+- name: Create Transmission download directory
+  sudo: true
+  file:
+    path={{ transmission_download_dir }}
+    state=directory
+    mode=0777
+  tags: transmission
+
+- name: Configure Transmission
+  sudo: true
+  template:
+    src=settings.json.j2
+    dest={{ transmission_config_dir }}/settings.json
+    owner=transmission
+    group=transmission
+  tags: transmission
+
+- name: Configure firewalld for Transmission
+  sudo: true
+  firewalld: port=9091/tcp permanent=true state=enabled immediate=true
+  tags: transmission

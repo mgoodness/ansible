@@ -1,0 +1,54 @@
+---
+# tasks file for openvpn-pia
+
+- name: Install OpenVPN package
+  sudo: true
+  dnf: name=openvpn state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: openvpn-pia
+
+- name: Install OpenVPN package
+  sudo: true
+  yum: name=openvpn state=present
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: openvpn-pia
+
+- name: Download PIA configs
+  get_url: url={{ openvpn_pia_url }}/openvpn.zip dest=/tmp/openvpn.zip
+  tags: openvpn-pia
+
+- name: Unzip PIA configs
+  sudo: true
+  unarchive: src=/tmp/openvpn.zip dest={{ openvpn_config_dir }} copy=false
+  tags: openvpn-pia
+
+- name: Create PIA config link
+  sudo: true
+  file:
+    src={{ openvpn_config_dir }}/"{{ openvpn_pia_config }}"
+    dest={{ openvpn_config_dir }}/PIA.conf
+    state=link
+  tags: openvpn-pia
+
+- name: Create OpenVPN credentials file
+  sudo: true
+  template: src=credentials.txt.j2 dest={{ openvpn_config_dir }}/credentials.txt
+  tags: openvpn-pia
+
+- name: Create OpenVPN systemd drop-in directory
+  sudo: true
+  file: path={{ openvpn_systemd_dir }} state=directory mode=0755
+  tags: openvpn-pia
+
+- name: Create OpenVPN systemd drop-in
+  sudo: true
+  copy: src=systemd-override.conf dest={{ openvpn_systemd_dir }}/override.conf
+  notify:
+    - Reload systemd
+    - Restart OpenVPN
+  tags: openvpn-pia
+
+- name: Enable & start OpenVPN
+  sudo: true
+  service: name=openvpn@PIA enabled=true state=started
+  tags: openvpn-pia

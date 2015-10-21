@@ -1,0 +1,12 @@
+---
+# handlers file for openvpn-pia
+
+- name: Reload systemd
+  sudo: true
+  command: systemctl daemon-reload
+  tags: openvpn-pia
+
+- name: Restart OpenVPN
+  sudo: true
+  service: name=openvpn@PIA state=restarted
+  tags: openvpn-pia

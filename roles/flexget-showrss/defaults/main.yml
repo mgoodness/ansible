@@ -1,0 +1,9 @@
+---
+# defaults file for flexget-showrss
+
+flexget_user: daemon
+flexget_group: daemon
+flexget_working_dir: /etc/flexget
+flexget_rss_feed: ''
+flexget_download_dir: ''
+flexget_copy_dir: ''

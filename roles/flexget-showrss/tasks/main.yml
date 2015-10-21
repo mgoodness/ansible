@@ -1,0 +1,63 @@
+---
+# tasks file for flexget-showrss
+
+- name: Install PIP
+  sudo: true
+  dnf: name=python-pip state=present
+  when: ansible_pkg_mgr == "dnf" or (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: flexget-showrss
+
+- name: Install PIP
+  sudo: true
+  yum: name=python-pip state=present
+  when: ansible_pkg_mgr == "yum" and not (ansible_distribution == "Fedora" and ansible_distribution_major_version >= 22)
+  tags: flexget-showrss
+
+- name: Install Flexget & Transmission RPC
+  sudo: true
+  pip: name={{ item }} state=present
+  with_items:
+    - flexget
+    - transmissionrpc
+  tags: flexget-showrss
+
+- name: Install Flexget systemd service
+  sudo: true
+  template:
+    src=flexget.service.j2
+    dest=/etc/systemd/system/flexget.service
+  tags: flexget-showrss
+
+- name: Create Flexget working directory
+  sudo: true
+  file:
+    path={{ flexget_working_dir }}
+    state=directory
+    mode=0755
+    owner={{ flexget_user }}
+    group={{ flexget_group }}
+  tags: flexget-showrss
+
+- name: Create Flexget download directory
+  sudo: true
+  file:
+    path={{ flexget_download_dir }}
+    state=directory
+    mode=0777
+  tags: flexget-showrss
+
+- name: Configure Flexget
+  sudo: true
+  template:
+    src=config.yml.j2
+    dest={{ flexget_working_dir }}/config.yml
+    owner={{ flexget_user }}
+    group={{ flexget_group }}
+  notify:
+    - Restart Flexget service
+  tags: flexget-showrss
+
+- name: Enable & start Flexget service
+  sudo: true
+  service: name=flexget enabled=true state=started
+  tags: flexget-showrss

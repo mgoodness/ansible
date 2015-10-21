@@ -44,3 +44,11 @@ samba_shares:
     force_group: 'users'
     directory_mask: '0775'
     create_mask: '0764'
+
+openvpn_pia_config: 'US Midwest.ovpn'
+
+flexget_rss_feed: http://showrss.info/rss.php?user_id=98824&hd=0&proper=1
+flexget_download_dir: /srv/shared_data/downloads
+flexget_copy_dir: '/srv/shared_data/Videos/Temp TV'
+
+transmission_download_dir: /srv/shared_data/downloads

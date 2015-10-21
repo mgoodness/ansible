@@ -1,0 +1,7 @@
+---
+# handlers file for flexget-showrss
+
+- name: Restart Flexget service
+  sudo: true
+  service: name=flexget state=restarted
+  tags: flexget-showrss

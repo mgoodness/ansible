@@ -1,0 +1,5 @@
+---
+# defaults file for transmission
+
+transmission_download_dir: ''
+transmission_config_dir: /var/lib/transmission/.config/transmission-daemon

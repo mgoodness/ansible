@@ -1,0 +1,6 @@
+---
+# vars file for openvpn-pia
+
+openvpn_config_dir: /etc/openvpn
+openvpn_systemd_dir: /etc/systemd/system/openvpn@.service.d
+openvpn_pia_url: https://www.privateinternetaccess.com/openvpn
